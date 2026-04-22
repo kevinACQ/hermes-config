@@ -9,6 +9,7 @@ ollama_cloud_models_cache.json
 .skills_prompt_snapshot.json
 external-repos/
 backups/
+*.lock
 *.pyc
 __pycache__/
 .DS_Store
