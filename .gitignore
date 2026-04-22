@@ -1,0 +1,14 @@
+# Secrets / runtime state
+.env
+auth.json
+state.db
+sessions/
+logs/
+models_dev_cache.json
+ollama_cloud_models_cache.json
+.skills_prompt_snapshot.json
+external-repos/
+backups/
+*.pyc
+__pycache__/
+.DS_Store
