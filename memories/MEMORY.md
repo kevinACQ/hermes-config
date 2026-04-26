@@ -1,3 +1,5 @@
 User environment constraint: work laptop without admin access; prefers OAuth-based auth over API keys (currently no Anthropic/OpenAI API keys).
 §
 User now has a GitHub-backed Hermes config backup repo at github.com/kevinACQ/hermes-config, mirrored locally at ~/.hermes/external-repos/hermes-config.
+§
+Voice onboarding project correction: Alex voice quality is good enough; main blockers are high-quality data ingestion, high-quality output, persistent member memory, and backend database sync.
