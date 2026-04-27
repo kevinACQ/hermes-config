@@ -94,12 +94,19 @@ Use ElevenLabs Knowledge Base for:
 - Questioning strategy.
 - Product expectations / next steps.
 
+ElevenLabs docs best practices:
+- Keep KB content clear, well-structured, relevant, and regularly updated.
+- Break large documents into smaller focused pieces.
+- Review transcripts to find knowledge gaps and add missing static context.
+- Enable RAG for large static docs so only relevant chunks enter the model context instead of loading full documents into the prompt.
+- Use Prompt-mode documents sparingly; too many always-included docs can exceed context limits.
+
 Do not use it for:
 - Per-member memory.
 - Sensitive member profile data.
 - Frequently changing database state.
 
-Per-member memory belongs in Supabase and should be injected by dynamic variables or fetched by server tools.
+Per-member memory belongs in Supabase and should be injected as a short dynamic-variable briefing or fetched by server tools.
 
 ## Backend Work to Look For
 
@@ -127,6 +134,30 @@ Likely next build items:
 - Dynamic variables need test placeholders/defaults or dashboard testing can break.
 - Treat Google Sheets as demo/debug output, not production source of truth.
 
+## Context Window / Memory Improvement Pattern
+
+Do not try to solve memory by making the ElevenLabs prompt bigger.
+
+Use this pattern:
+1. Static docs -> Knowledge Base with RAG enabled when large.
+2. Per-call member context -> short dynamic-variable briefing, not raw history.
+3. Fresh or detailed data -> server tools that fetch from Supabase on demand.
+4. Full history -> raw transcript/recording/webhook payload stored in backend.
+5. Durable profile -> compiled member memory summary updated after each call.
+6. Extraction -> ElevenLabs Data Collection for key fields plus a backend extraction/merge pass for broader schema completion.
+
+Recommended variable categories:
+- member_name
+- business_name
+- member_id
+- known_summary
+- missing_fields
+- call_goal
+- last_call_summary
+- priority_questions
+
+Use secret__ dynamic variables for auth tokens/private IDs that should only go in headers and not be sent to the LLM.
+
 ## Good Final Recommendation
 
-The best solution is: ElevenLabs handles the call; Supabase handles memory. Use dynamic variables and server tools for live context, post-call webhooks plus a backend extraction pass for clean data, and a Karpathy-style raw-to-compiled profile system for persistent member memory.
+The best solution is: ElevenLabs handles the call; Supabase handles memory. Use dynamic variables and server tools for live context, post-call webhooks plus a backend extraction pass for clean data, RAG for large static knowledge, and a Karpathy-style raw-to-compiled profile system for persistent member memory.
