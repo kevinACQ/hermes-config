@@ -352,3 +352,4 @@ platform_toolsets:
   - hermes-homeassistant
   qqbot:
   - hermes-qqbot
+DISCORD_HOME_CHANNEL: '1499242568440090634'
