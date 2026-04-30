@@ -282,8 +282,8 @@ honcho: {}
 timezone: ''
 discord:
   require_mention: true
-  free_response_channels: ''
-  allowed_channels: ''
+  free_response_channels: 1499242568440090634
+  allowed_channels: 1499242568440090634
   auto_thread: true
   reactions: true
   channel_prompts: {}
