@@ -10,7 +10,7 @@ from pathlib import Path
 repo = Path(__file__).resolve().parent
 hermes_home = Path.home() / '.hermes'
 backup_root = hermes_home / 'backups' / 'restore'
-include = ['SOUL.md', 'config.yaml', 'memories', 'skills']
+include = ['SOUL.md', 'config.yaml', 'memories', 'skills', 'scripts']
 
 
 def run(cmd: list[str]) -> str:
