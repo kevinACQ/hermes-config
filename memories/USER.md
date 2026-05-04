@@ -6,7 +6,7 @@ User wants Hermes config, skills, and identity files continuously backed up to G
 §
 Kevin wants Hermes to operate as a quiet executive assistant alongside Claude Code, with zero new habits; 99%+ recommendations should go to Telegram at most once per day, and lower-confidence ideas should stay in Hermes's own workspace.
 §
-User wants very concise replies, under a fifth-grade reading level, with as few sentences as possible while preserving clear meaning.
+User wants very concise, simple replies. Approval requests need a phase-by-phase plan with problem, end goal, context, and mitigated risks.
 §
 Kevin wants Hermes to have broad but safe Discord permissions so it can operate maximally effectively, including channel visibility/history when supported.
 §
