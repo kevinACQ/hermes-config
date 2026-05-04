@@ -76,6 +76,43 @@ PY
 - Knowledge base is excluded from git and syncs through Google Drive.
 - Do not summarize or overwrite raw source files unless Kevin explicitly asks.
 
+## Search / index workflow
+
+Use this when Kevin asks to find/search/list articles in the KB, e.g. “find me all the articles related to evals for LLMs.”
+
+Primary search command:
+
+```bash
+~/.hermes/scripts/kb_search.py "QUERY" --limit 10
+```
+
+Index files maintained by the script:
+
+```text
+/Users/kevin/projects/cog-config/knowledge-base/.kb-index.sqlite
+/Users/kevin/projects/cog-config/knowledge-base/INDEX.md
+```
+
+The script is intentionally more robust than grep:
+- parses article frontmatter
+- indexes title, author, tags, path, and full body with SQLite FTS5
+- auto-refreshes when markdown files change
+- expands common aliases like evals → evaluation/benchmark/judge/golden set
+- requires clear multi-concept queries to match each concept when possible
+- returns title, author/date, URL/path, and a matching snippet
+
+After adding KB content, refresh the index:
+
+```bash
+~/.hermes/scripts/kb_search.py --rebuild --write-index
+```
+
+Claude-side companion skill exists at:
+
+```text
+/Users/kevin/.claude/skills/kb-search/SKILL.md
+```
+
 ## Pitfalls
 
 - Do not confuse this with Hermes `llm-wiki`, Obsidian, or `~/wiki`. Kevin's actual KB for this workflow is the Claude/cog-config knowledge base above.
