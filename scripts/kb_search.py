@@ -21,7 +21,7 @@ DEFAULT_KB = Path(os.environ.get("KB_PATH", "/Users/kevin/projects/cog-config/kn
 DEFAULT_DB = Path(os.environ.get("KB_INDEX_DB", str(DEFAULT_KB / ".kb-index.sqlite")))
 
 ALIASES = {
-    "evals": ["eval", "evals", "evaluation", "evaluations", "evaluate", "benchmark", "benchmarks", "test", "tests", "regression", "grader", "judge", "llm-as-a-judge", "llm judge", "golden dataset", "golden set"],
+    "evals": ["eval", "evals", "evaluation", "evaluations", "evaluate", "benchmark", "benchmarks", "regression", "grader", "judge", "llm-as-a-judge", "llm judge", "golden dataset", "golden set", "unit test"],
     "llm": ["llm", "llms", "language model", "language models", "ai model", "ai models", "model"],
     "agents": ["agent", "agents", "agentic", "ai agent", "ai agents", "workflow", "workflows", "tool use", "orchestrator", "subagent", "sub-agent"],
     "claude": ["claude", "claude code", "anthropic"],
@@ -29,6 +29,28 @@ ALIASES = {
 }
 
 STOPWORDS = {"a", "an", "and", "are", "all", "for", "from", "how", "in", "me", "of", "on", "or", "proper", "related", "the", "this", "to", "with", "you", "find", "articles", "article", "knowledge", "base", "kb"}
+
+
+def query_concepts(q: str) -> list[list[str]]:
+    """Return concept groups from the user's query.
+
+    Example: "evals for LLMs" becomes two groups: eval synonyms and LLM synonyms.
+    Search results must hit each group when there are only a few clear concepts.
+    This avoids brittle examples like returning every article that only says "LLM".
+    """
+    raw_terms = re.findall(r"[a-zA-Z0-9][a-zA-Z0-9-]*", q.lower())
+    groups: list[list[str]] = []
+    seen = set()
+    for t in raw_terms:
+        if t in STOPWORDS:
+            continue
+        key = t[:-1] if t.endswith("s") and t[:-1] in ALIASES else t
+        vals = [key] + ALIASES.get(key, [])
+        norm = tuple(sorted(set(vals)))
+        if norm not in seen:
+            seen.add(norm)
+            groups.append(list(norm))
+    return groups
 
 @dataclass
 class Article:
@@ -66,7 +88,8 @@ def parse_frontmatter(text: str) -> tuple[dict[str, str], str]:
 
 def iter_articles(kb: Path) -> Iterable[Article]:
     for path in sorted(kb.rglob("*.md")):
-        if path.name.startswith(".") or any(part.startswith(".") for part in path.relative_to(kb).parts):
+        rel = path.relative_to(kb)
+        if path.name.upper() == "INDEX.MD" or path.name.startswith(".") or any(part.startswith(".") for part in rel.parts):
             continue
         text = path.read_text(errors="replace")
         fm, body = parse_frontmatter(text)
