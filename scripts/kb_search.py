@@ -206,26 +206,52 @@ def fts_query(terms: list[str]) -> str:
     return " OR ".join(parts) if parts else '""'
 
 
+def term_in_text(term: str, text: str) -> bool:
+    term = term.lower().strip()
+    if not term:
+        return False
+    if " " in term:
+        return term in text
+    # Word-boundary match so "eval" does not match random substrings.
+    return re.search(r"(?<![a-zA-Z0-9])" + re.escape(term) + r"(?![a-zA-Z0-9])", text) is not None
+
+
 def search(kb: Path, db: Path, query: str, limit: int) -> list[dict]:
     if index_stale(kb, db):
         rebuild(kb, db)
     conn = connect(db)
     terms = expand_query(query)
+    groups = query_concepts(query)
     q = fts_query(terms)
     rows = conn.execute(
         """
-        SELECT a.*, bm25(article_fts, 3.0, 1.5, 2.0, 1.0, 0.5) AS score,
+        SELECT a.*, bm25(article_fts, 3.0, 1.5, 2.0, 1.0, 0.5) AS bm25_score,
                snippet(article_fts, 3, '[', ']', ' … ', 28) AS snippet
         FROM article_fts
         JOIN articles a ON a.id = article_fts.rowid
         WHERE article_fts MATCH ?
-        ORDER BY score ASC, a.original_date DESC
-        LIMIT ?
+        LIMIT 100
         """,
-        (q, limit),
+        (q,),
     ).fetchall()
     results = []
     for r in rows:
+        haystack = "\n".join([r["title"] or "", r["author"] or "", r["tags"] or "", r["body"] or ""]).lower()
+        group_hits = 0
+        unique_hits = set()
+        for group in groups:
+            hit = False
+            for term in group:
+                if term_in_text(term, haystack):
+                    hit = True
+                    unique_hits.add(term.lower())
+            if hit:
+                group_hits += 1
+        # For clear multi-concept queries, require every concept to appear.
+        if 1 < len(groups) <= 4 and group_hits < len(groups):
+            continue
+        # Simple reranker: concept coverage first, then unique synonym hits, then FTS BM25.
+        score = (group_hits * 100) + (len(unique_hits) * 5) - float(r["bm25_score"] or 0)
         results.append({
             "title": r["title"],
             "author": r["author"],
@@ -235,9 +261,11 @@ def search(kb: Path, db: Path, query: str, limit: int) -> list[dict]:
             "path": str(kb / r["relpath"]),
             "relpath": r["relpath"],
             "snippet": re.sub(r"\s+", " ", r["snippet"] or "").strip(),
-            "score": r["score"],
+            "score": score,
+            "matched_concepts": group_hits,
         })
-    return results
+    results.sort(key=lambda r: (r["score"], r["date"] or ""), reverse=True)
+    return results[:limit]
 
 
 def write_markdown_index(kb: Path, db: Path) -> Path:
