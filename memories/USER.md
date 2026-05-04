@@ -9,3 +9,5 @@ Kevin wants Hermes to operate as a quiet executive assistant alongside Claude Co
 User wants very concise replies, under a fifth-grade reading level, with as few sentences as possible while preserving clear meaning.
 §
 Kevin wants Hermes to have broad but safe Discord permissions so it can operate maximally effectively, including channel visibility/history when supported.
+§
+When Kevin says “read channel history” in Discord, he may mean search Hermes past session history/transcripts for relevant prior context, not Discord API channel history.
