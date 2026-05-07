@@ -98,3 +98,23 @@ GBRAIN_HOME=/Users/kevin/.hermes gbrain search "Kevin working style"
 ```
 
 The integration is only genuinely improving Hermes memory if Hermes can retrieve GBrain-only content and use it in an answer.
+
+## Known pitfall: macOS PGLite CLI failure
+
+On Kevin's macOS setup, direct `gbrain` CLI commands can fail with a PGLite WASM runtime error, while the already-running MCP server can still answer through Hermes MCP tools.
+
+Symptom:
+
+```text
+PGLite failed to initialize its WASM runtime.
+This is most commonly the macOS 26.3 WASM bug
+Original error: Aborted(). Build with -sASSERTIONS for more info.
+```
+
+When this happens:
+
+1. Prefer the MCP tools first: `mcp_gbrain_search`, `mcp_gbrain_query`, `mcp_gbrain_get_page`, `mcp_gbrain_get_health`, etc.
+2. Use `gbrain doctor` only for diagnosis; it may still run even when normal CLI commands fail.
+3. Check whether the MCP server is running with `ps aux | grep -i '[g]brain'`; Kevin has used `bun /Users/kevin/.bun/bin/gbrain serve` successfully.
+4. Avoid assuming CLI failure means GBrain is unavailable; verify MCP reads/searches before reporting a block.
+5. If a submitted MCP background job remains stuck in `waiting` and no worker is active, cancel the test job rather than leaving queue clutter.
