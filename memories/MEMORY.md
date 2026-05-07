@@ -9,3 +9,5 @@ Kevin's default Hermes gateway on macOS is a launchd user agent labeled ai.herme
 Claude Code project hub auto-refresh is installed: script at ~/.hermes/scripts/refresh_claude_code_projects.py scans ~/projects and updates ~/.hermes/workspace/claude-code-projects; cron job 'Refresh Claude Code project hub' runs hourly with local-only delivery.
 §
 Kevin's Claude knowledge base lives at /Users/kevin/projects/cog-config/knowledge-base. Symlinks exist at /Users/kevin/.claude/knowledgebase and /Users/kevin/.hermes/knowledgebase. Claude skill /Users/kevin/.claude/skills/kb-add/SKILL.md defines the ingest workflow.
+§
+GBrain CLI commands on Kevin's macOS may fail with a PGLite WASM runtime error linked to the macOS 26.3 bug, while the running MCP server (`bun ~/.bun/bin/gbrain serve`) can still serve MCP reads/searches. Prefer MCP tools first; use `gbrain doctor` for diagnosis.
