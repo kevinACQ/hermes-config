@@ -87,6 +87,42 @@ Do not write:
 - Raw full transcripts unless Kevin explicitly asks
 - Low-confidence inferences without labeling them
 
+## Maintenance pass workflow
+
+Use this when asked to run local GBrain sync/embed maintenance, especially from a cron job where no user is present.
+
+1. Run the requested CLI commands with Kevin's environment:
+
+```bash
+export PATH="$HOME/.bun/bin:$PATH"
+export GBRAIN_HOME=/Users/kevin/.hermes
+cd /Users/kevin/.hermes/brain
+gbrain sync --repo /Users/kevin/.hermes/brain
+gbrain embed --stale
+```
+
+2. If `gbrain sync` fails with the known PGLite WASM runtime issue, do not treat GBrain as unavailable. Try MCP fallback:
+
+```text
+mcp_gbrain_sync_brain(repo="/Users/kevin/.hermes/brain", no_embed=true)
+```
+
+Report MCP `up_to_date` as a successful sync fallback.
+
+3. If `gbrain embed --stale` fails:
+   - If the error is missing API key/provider/embedding provider, report it as a warning, not fatal; keyword search still works.
+   - If the error is the PGLite WASM runtime issue, report embeddings as blocked by local GBrain/PGLite runtime.
+   - Optionally submit an MCP `embed` job only if a worker appears available. If the job remains `waiting` after a short check and no worker is active, cancel it to avoid queue clutter.
+
+4. Verify with MCP stats/health when available:
+
+```text
+mcp_gbrain_get_stats()
+mcp_gbrain_get_health()
+```
+
+5. Final cron reports should be concise: status, warnings, and needed action. Do not schedule additional cron jobs from inside cron-run sessions.
+
 ## Verification
 
 A healthy integration should pass:
