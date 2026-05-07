@@ -354,3 +354,12 @@ platform_toolsets:
   qqbot:
   - hermes-qqbot
 DISCORD_HOME_CHANNEL: '1499242568440090634'
+mcp_servers:
+  gbrain:
+    command: /Users/kevin/.hermes/scripts/gbrain-mcp.sh
+    args: []
+    enabled: true
+    connect_timeout: 60
+    timeout: 120
+    sampling:
+      enabled: false
