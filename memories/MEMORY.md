@@ -10,4 +10,4 @@ Claude Code project hub auto-refresh is installed: script at ~/.hermes/scripts/r
 §
 Kevin's Claude knowledge base lives at /Users/kevin/projects/cog-config/knowledge-base. Symlinks exist at /Users/kevin/.claude/knowledgebase and /Users/kevin/.hermes/knowledgebase. Claude skill /Users/kevin/.claude/skills/kb-add/SKILL.md defines the ingest workflow.
 §
-GBrain CLI commands on Kevin's macOS may fail with a PGLite WASM runtime error linked to the macOS 26.3 bug, while the running MCP server (`bun ~/.bun/bin/gbrain serve`) can still serve MCP reads/searches. Prefer MCP tools first; use `gbrain doctor` for diagnosis.
+GBrain on Kevin's macOS: if CLI/MCP fails with a PGLite WASM runtime error, first test a temp PGLite brain. On 2026-05-08 the fix was to backup/rebuild ~/.hermes/.gbrain/brain.pglite from /Users/kevin/.hermes/brain markdown and run gbrain apply-migrations; embeddings still require a configured embedding provider/API key.

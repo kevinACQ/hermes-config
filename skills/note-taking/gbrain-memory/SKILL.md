@@ -135,9 +135,9 @@ GBRAIN_HOME=/Users/kevin/.hermes gbrain search "Kevin working style"
 
 The integration is only genuinely improving Hermes memory if Hermes can retrieve GBrain-only content and use it in an answer.
 
-## Known pitfall: macOS PGLite CLI failure
+## Known pitfall: PGLite CLI/MCP failure after half-migrated DB
 
-On Kevin's macOS setup, direct `gbrain` CLI commands can fail with a PGLite WASM runtime error, while the already-running MCP server can still answer through Hermes MCP tools.
+On Kevin's macOS setup, direct `gbrain` CLI commands can fail with a PGLite WASM runtime error. This can look like a macOS/PGLite runtime bug, but on 2026-05-08 the root cause was the existing local PGLite DB being half-migrated/corrupted; a fresh temp PGLite brain worked.
 
 Symptom:
 
@@ -147,10 +147,38 @@ This is most commonly the macOS 26.3 WASM bug
 Original error: Aborted(). Build with -sASSERTIONS for more info.
 ```
 
-When this happens:
+Debug flow:
 
-1. Prefer the MCP tools first: `mcp_gbrain_search`, `mcp_gbrain_query`, `mcp_gbrain_get_page`, `mcp_gbrain_get_health`, etc.
-2. Use `gbrain doctor` only for diagnosis; it may still run even when normal CLI commands fail.
-3. Check whether the MCP server is running with `ps aux | grep -i '[g]brain'`; Kevin has used `bun /Users/kevin/.bun/bin/gbrain serve` successfully.
-4. Avoid assuming CLI failure means GBrain is unavailable; verify MCP reads/searches before reporting a block.
-5. If a submitted MCP background job remains stuck in `waiting` and no worker is active, cancel the test job rather than leaving queue clutter.
+1. Test whether PGLite itself works with a temp brain:
+
+```bash
+export PATH="$HOME/.bun/bin:$PATH"
+tmp=$(mktemp -d /tmp/gbrain-test.XXXXXX)
+GBRAIN_HOME="$tmp" gbrain init --pglite
+GBRAIN_HOME="$tmp" gbrain stats
+```
+
+2. If temp PGLite works but Kevin's DB fails, backup and rebuild from markdown:
+
+```bash
+export PATH="$HOME/.bun/bin:$PATH"
+export GBRAIN_HOME=/Users/kevin/.hermes
+cd /Users/kevin/.hermes/brain
+cp -R ~/.hermes/.gbrain/brain.pglite ~/.hermes/.gbrain/brain.pglite.backup-$(date +%Y%m%d-%H%M%S)
+mv ~/.hermes/.gbrain/brain.pglite ~/.hermes/.gbrain/brain.pglite.broken-$(date +%Y%m%d-%H%M%S)
+gbrain init --pglite
+gbrain import /Users/kevin/.hermes/brain --no-embed
+gbrain apply-migrations --yes --non-interactive
+gbrain stats
+hermes mcp test gbrain
+```
+
+3. If `gbrain doctor` reports `MINIONS HALF-INSTALLED`, run:
+
+```bash
+gbrain apply-migrations --yes --non-interactive
+```
+
+4. PGLite does not use a persistent `jobs work` daemon. Use inline execution / `--follow`; don't submit MCP background jobs unless a worker is actually active. Cancel diagnostic jobs that remain `waiting`.
+
+5. Embeddings may still be blocked by missing embedding credentials. Current observed blocker: `OpenAI embedding requires OPENAI_API_KEY.` Keyword search still works; vector/hybrid embeddings remain degraded until an embedding provider is configured.
