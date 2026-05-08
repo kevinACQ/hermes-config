@@ -87,6 +87,61 @@ Do not write:
 - Raw full transcripts unless Kevin explicitly asks
 - Low-confidence inferences without labeling them
 
+## No-API-key GBrain setup
+
+Use this when Kevin asks how to make GBrain work without API keys or with OAuth-only resources.
+
+Key findings from Kevin's setup:
+
+- GBrain v0.27 supports pluggable embedding providers.
+- Claude OAuth and ChatGPT OAuth are useful at the Hermes/agent reasoning layer, but GBrain does not consume those OAuth sessions directly for embeddings.
+- Anthropic does not provide a first-party embedding model in GBrain; an Anthropic API key can help expansion/chat/subagents, but not core vector embeddings.
+- Gemini embeddings require `GOOGLE_GENERATIVE_AI_API_KEY`; a Google Workspace/Gemini account alone is not enough for GBrain's native Gemini embedding path.
+- The clean no-API-key path is local Ollama embeddings.
+
+Recommended no-key architecture:
+
+```text
+Hermes reasoning:     Claude OAuth / ChatGPT OAuth
+GBrain database:      local PGLite
+GBrain embeddings:   local Ollama + nomic-embed-text
+GBrain expansion:    skip, or optional Anthropic API key
+```
+
+Discovery commands:
+
+```bash
+export PATH="$HOME/.bun/bin:$PATH"
+export GBRAIN_HOME=/Users/kevin/.hermes
+gbrain providers list
+gbrain providers explain --json
+gbrain config show
+command -v ollama || true
+ollama list 2>&1 || true
+```
+
+Setup once Ollama is installed/running:
+
+```bash
+ollama serve
+ollama pull nomic-embed-text
+export PATH="$HOME/.bun/bin:$PATH"
+export GBRAIN_HOME=/Users/kevin/.hermes
+gbrain config set embedding_model ollama:nomic-embed-text
+gbrain config set embedding_dimensions 768
+gbrain embed --stale
+```
+
+Verify:
+
+```bash
+GBRAIN_HOME=/Users/kevin/.hermes gbrain providers list
+GBRAIN_HOME=/Users/kevin/.hermes gbrain health
+GBRAIN_HOME=/Users/kevin/.hermes gbrain query "Kevin working style"
+```
+
+If Ollama is not installed, report that as the single blocker. Do not suggest OAuth-browser-session hacks unless Kevin explicitly wants to build/maintain a custom adapter; they are fragile and outside GBrain's supported provider path.
+
 ## Maintenance pass workflow
 
 Use this when asked to run local GBrain sync/embed maintenance, especially from a cron job where no user is present.
