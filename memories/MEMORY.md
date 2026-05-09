@@ -12,4 +12,4 @@ Kevin's Claude knowledge base lives at /Users/kevin/projects/cog-config/knowledg
 §
 GBrain on Kevin's macOS: if CLI/MCP fails with a PGLite WASM runtime error, first test a temp PGLite brain. On 2026-05-08 the fix was to backup/rebuild ~/.hermes/.gbrain/brain.pglite from /Users/kevin/.hermes/brain markdown and run gbrain apply-migrations; embeddings still require a configured embedding provider/API key.
 §
-Kevin's MacBook has Ollama installed user-space at ~/Applications/Ollama.app with CLI symlink ~/.local/bin/ollama; nomic-embed-text is pulled and Ollama serves on localhost:11434 without admin credentials. Avoid accepting Ollama prompts to move/update into /Applications because work laptop lacks admin access.
+Kevin's MacBook has Ollama installed user-space at ~/Applications/Ollama.app with CLI symlink ~/.local/bin/ollama; nomic-embed-text is pulled and serves on localhost:11434. GBrain local PGLite is configured with ollama:nomic-embed-text at 768 dimensions and shows 100% embed coverage. Avoid Ollama prompts to move/update into /Applications because work laptop lacks admin access.
