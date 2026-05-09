@@ -185,10 +185,75 @@ A healthy integration should pass:
 ```bash
 hermes mcp test gbrain
 GBRAIN_HOME=/Users/kevin/.hermes gbrain stats
+GBRAIN_HOME=/Users/kevin/.hermes gbrain health
 GBRAIN_HOME=/Users/kevin/.hermes gbrain search "Kevin working style"
 ```
 
+Kevin's reusable smoke-test script is:
+
+```bash
+/Users/kevin/.hermes/scripts/verify-gbrain-hermes.sh
+```
+
+This script checks GBrain version, doctor, stats, health, search, query, `hermes mcp list`, and `hermes mcp test gbrain`.
+
 The integration is only genuinely improving Hermes memory if Hermes can retrieve GBrain-only content and use it in an answer.
+
+If native `mcp_gbrain_*` tools in the currently running Hermes session return `ClosedResourceError` but `hermes mcp test gbrain` passes, treat the current session's MCP client as stale rather than treating GBrain as broken. Use CLI fallback for the current task, and refresh the Hermes session/gateway before relying on native MCP tools in that same process.
+
+## Full implementation / seeding workflow
+
+Use this when executing a broad GBrain integration plan or recovering from a partially completed setup.
+
+1. Verify the live baseline first:
+
+```bash
+export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
+export GBRAIN_HOME=/Users/kevin/.hermes
+gbrain --version
+cd /Users/kevin/.hermes/brain
+gbrain doctor --json
+gbrain stats
+gbrain health
+hermes mcp list
+hermes mcp test gbrain
+```
+
+2. If native MCP tools fail in-session, continue with the CLI if fresh `hermes mcp test gbrain` passes. Do not block the task on the stale tool client.
+
+3. Seed durable memory as concise markdown pages, not raw transcripts. Good initial targets:
+
+```text
+/Users/kevin/.hermes/brain/sessions/hermes-config-backup.md
+/Users/kevin/.hermes/brain/sessions/claude-code-project-hub.md
+/Users/kevin/.hermes/brain/sessions/voice-onboarding-architecture.md
+/Users/kevin/.hermes/brain/sessions/gbrain-integration-progress.md
+```
+
+Use `session_search` summaries as provenance, and include wiki links to existing pages such as `[[tools/gbrain]]`, `[[projects/hermes-agent]]`, and `[[workflows/gbrain-memory-routing]]`.
+
+4. Import, embed, and backfill graph/timeline:
+
+```bash
+export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
+export GBRAIN_HOME=/Users/kevin/.hermes
+cd /Users/kevin/.hermes/brain
+gbrain import /Users/kevin/.hermes/brain --no-embed
+gbrain embed --stale
+gbrain extract links --source db
+gbrain extract timeline --source db
+gbrain stats
+gbrain health
+```
+
+5. Commit local brain markdown changes so the private local brain has rollback history:
+
+```bash
+git -C /Users/kevin/.hermes/brain add -A
+git -C /Users/kevin/.hermes/brain commit -m "chore: seed GBrain Hermes memory pages"
+```
+
+6. Re-run `/Users/kevin/.hermes/scripts/verify-gbrain-hermes.sh` and report only the high-level status, warnings, and remaining blocker.
 
 ## Known pitfall: PGLite CLI/MCP failure after half-migrated DB
 
