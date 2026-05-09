@@ -236,6 +236,21 @@ gbrain apply-migrations --yes --non-interactive
 
 4. PGLite does not use a persistent `jobs work` daemon. Use inline execution / `--follow`; don't submit MCP background jobs unless a worker is actually active. Cancel diagnostic jobs that remain `waiting`.
 
+4a. If `gbrain health`, `gbrain stats`, or `hermes mcp test gbrain` fails with `Timed out waiting for PGLite lock`, inspect the lock file and live processes before rebuilding anything:
+
+```bash
+python3 -m json.tool /Users/kevin/.hermes/.gbrain/brain.pglite/.gbrain-lock/lock
+ps -p <pid-from-lock> -o pid,ppid,stat,etime,command
+ps aux | egrep 'gbrain|PGlite|bun|hermes' | egrep -v 'egrep|ps aux'
+```
+
+Observed cause on 2026-05-09: stale `gbrain serve` held the PGLite lock after MCP testing, blocking health/stats/MCP startup. Fix only after confirming the PID/command: stop the stale `gbrain serve` process, verify it exited, then remove only the stale `.gbrain-lock` directory if it remains. Re-verify with:
+
+```bash
+GBRAIN_HOME=/Users/kevin/.hermes gbrain health
+hermes mcp test gbrain
+```
+
 5. For Kevin's current no-admin/no-API-key setup, embeddings should use Ollama:
 
 ```bash
