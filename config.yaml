@@ -361,3 +361,6 @@ mcp_servers:
     timeout: 120
     sampling:
       enabled: false
+gateway:
+  discord:
+    history_limit: 5
