@@ -236,4 +236,15 @@ gbrain apply-migrations --yes --non-interactive
 
 4. PGLite does not use a persistent `jobs work` daemon. Use inline execution / `--follow`; don't submit MCP background jobs unless a worker is actually active. Cancel diagnostic jobs that remain `waiting`.
 
-5. Embeddings may still be blocked by missing embedding credentials. Current observed blocker: `OpenAI embedding requires OPENAI_API_KEY.` Keyword search still works; vector/hybrid embeddings remain degraded until an embedding provider is configured.
+5. For Kevin's current no-admin/no-API-key setup, embeddings should use Ollama:
+
+```bash
+export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
+export GBRAIN_HOME=/Users/kevin/.hermes
+gbrain init --pglite --embedding-model ollama:nomic-embed-text --embedding-dimensions 768
+# If rebuilding, import markdown and then embed:
+gbrain import /Users/kevin/.hermes/brain --no-embed
+gbrain embed --stale
+```
+
+If `gbrain embed --stale` says `expected 1536 dimensions, not 768`, the DB schema was initialized before the Ollama config took effect. Backup/rebuild the PGLite DB with the `gbrain init --pglite --embedding-model ... --embedding-dimensions 768` flags, then import and embed.
