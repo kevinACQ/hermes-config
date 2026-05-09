@@ -3,9 +3,7 @@ model:
   provider: openai-codex
   base_url: https://chatgpt.com/backend-api/codex
 providers: {}
-fallback_providers:
-- provider: anthropic
-  model: claude-sonnet-4-6
+fallback_providers: '[copilot, anthropic]'
 credential_pool_strategies:
   anthropic: fill_first
   openai-codex: fill_first
