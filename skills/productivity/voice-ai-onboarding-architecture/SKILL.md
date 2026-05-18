@@ -23,12 +23,12 @@ Use this when Kevin asks about the ACQ Vantage voice AI onboarding project, data
 
 ## Known Architecture
 
-Current stack:
-- ElevenLabs Conversational AI for voice calls.
-- Twilio phone routing.
-- Google Apps Script / Google Sheet for demo data capture.
-- Supabase / backend should become source of truth.
-- ACQ_Vantage has `/api/onboarding-call` and `/api/zapier-trigger` routes.
+Current stack / source-of-truth warning:
+- Historical/main repo docs describe ElevenLabs Conversational AI + Twilio + Google Apps Script / Google Sheet.
+- A newer Claude worktree may contain a Retell migration and Vance/V2/V3 agent work: `/Users/kevin/projects/voice-onboarding-mvp/.claude/worktrees/*`.
+- Always inspect both the main repo and any `.claude/worktrees/*` state-transfer docs before recommending changes; the active platform may be Retell even when main README/SOP still says ElevenLabs.
+- ACQ_Vantage may have split integration paths: `/api/onboarding-call` can use Retell while `/api/zapier-trigger` may still use ElevenLabs Alex/Leila.
+- Google Apps Script / Google Sheet is demo/debug capture; Supabase/backend should become production source of truth.
 
 ElevenLabs capabilities confirmed from docs:
 - Dynamic variables can inject runtime values into system prompt, first message, tools, and headers.
