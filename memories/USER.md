@@ -10,4 +10,4 @@ User wants very concise, simple replies. Approval/permission requests are last r
 §
 Kevin wants Hermes to have broad but safe Discord permissions so it can operate maximally effectively, including channel visibility/history when supported.
 §
-When Kevin says “read channel history” in Discord, he may mean search Hermes past session history/transcripts for relevant prior context, not Discord API channel history.
+When Kevin references Discord history/context, use session_search and concise repo/state files; Hermes lacks Discord channel-history API access unless messages were delivered to the agent.
