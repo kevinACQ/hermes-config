@@ -137,6 +137,41 @@ Fast deliverables:
 - 5-call manual eval rubric
 - optional create/update script copied from the existing V2 pattern
 
+## Hermes V3 Retell Agent Build Pattern
+
+When Kevin asks to “start” or “autoplan each phase” for the Hermes/Retell voice advisor, treat it as an execution prep task, not just a recommendation.
+
+Default implementation path:
+1. Load this skill plus `plan`/`google-workspace` if Sheets or eval setup is involved.
+2. Read the saved plan if provided, usually `/Users/kevin/My Drive/Claude Code/retell-hermes-voice-agent-plan.md`.
+3. Validate against Karpathy guidelines if requested: `/Users/kevin/.claude/skills/karpathy-guidelines/SKILL.md`.
+4. Inspect both main repo and Claude worktrees. If `search_files` misses hidden worktree files, use a small Python `os.walk`/`execute_code` scan under `/Users/kevin/projects/voice-onboarding-mvp/.claude/worktrees`.
+5. Create an isolated folder only: `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/`.
+6. Prepare, but do not externally execute, the Retell/API steps until Apps Script webhook/env values are ready.
+
+Reusable Hermes V3 deliverables:
+- `README.md` — states Hermes V3 is separate from Alex/Leila/Vance.
+- `.env.example` — placeholders only, no secrets.
+- `AUTOPLAN.md` — phase-by-phase goals, deliverables, verification, pass bars.
+- `agent-prompt-hermes-v3.md` — voice-native Hermes prompt, no `[pause]` tags, one-question discipline, memory-safe language.
+- `post-call-analysis-schema.json` — Retell fields for topic, stated goal, surface problem, inferred bottleneck, bottleneck category, next step, open loop, memory candidate, people/projects, follow-up, confidence, call quality summary.
+- `webhook-hermes-memory.js` — Google Apps Script webhook creating `Hermes Calls`, `Hermes Memory Candidates`, `Hermes Evals`, and `Hermes Weekly Trend` tabs.
+- `eval-rubric.md` — weighted 10-criterion eval; most important manual field is `top_issue`.
+- `create-hermes-agent.sh` — copied/adapted from Retell V2 script; writes IDs to `.env`, not repo files.
+- `call-hermes.sh` — outbound test call script using `RETELL_AGENT_ID_HERMES`.
+- `karpathy-validation.md` — validates scope, simplicity, surgical changes, and verification.
+
+Verification before reporting done:
+- `bash -n hermes-v3/create-hermes-agent.sh hermes-v3/call-hermes.sh`
+- `python3 -m json.tool hermes-v3/post-call-analysis-schema.json >/dev/null`
+- `node --check hermes-v3/webhook-hermes-memory.js`
+- scan prompt for `[pause` / vocal tags.
+- `git status --short hermes-v3` to confirm only V3 files are in the intended folder.
+
+External-action boundary:
+- Creating the actual Retell agent calls the external Retell API and depends on `RETELL_WEBHOOK_URL`, Retell keys, and voice IDs. Prepare scripts first; run the API creation only after webhook deployment/env readiness is clear.
+- Recommended next order after prep: deploy Apps Script, set `HERMES_MEMORY_SHEET_ID`, run `testHermesWebhook()`, set `RETELL_WEBHOOK_URL`, then run `./create-hermes-agent.sh` and `./call-hermes.sh`.
+
 ## Backend Work to Look For
 
 In ACQ_Vantage, inspect:
