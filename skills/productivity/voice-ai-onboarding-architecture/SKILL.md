@@ -108,6 +108,35 @@ Do not use it for:
 
 Per-member memory belongs in Supabase and should be injected as a short dynamic-variable briefing or fetched by server tools.
 
+## Boardy-Style V3 Voice Agent Pattern
+
+When Kevin asks whether Hermes can create a new voice agent from Boardy.ai / transcript analysis context, recommend a separate test agent rather than overwriting production agents.
+
+Preferred approach:
+1. Build a separate V3 "Founder Advisor Intake" agent (often Vance V3) using the existing voice stack/settings.
+2. Do not overwrite Alex/Leila or wire Zapier until V3 passes manual eval.
+3. Use Boardy-derived behavior rules:
+   - ask one high-leverage question at a time
+   - treat "I'm not sure" as diagnostic signal
+   - reframe surface problem into root bottleneck
+   - challenge premature solutions like hiring when process/ownership/context may be the real issue
+   - use vivid founder-friendly metaphors sparingly
+   - close with one continuity/bottleneck summary
+4. Keep the original five onboarding fields, but add optional extraction fields for:
+   - current_goal
+   - biggest_bottleneck
+   - bottleneck_category
+   - support_needed
+   - advisor_summary
+   - confidence
+5. Validate with 3-5 manual calls and Kevin pass/fail critique before routing real members.
+
+Fast deliverables:
+- `agent-prompt-v3-boardy.md`
+- Retell/voice-platform extraction schema for bottleneck fields
+- 5-call manual eval rubric
+- optional create/update script copied from the existing V2 pattern
+
 ## Backend Work to Look For
 
 In ACQ_Vantage, inspect:
