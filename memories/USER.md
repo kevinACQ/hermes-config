@@ -10,4 +10,4 @@ User wants concise, simple replies and wants plans shown inline or attached in-c
 §
 Kevin wants Hermes to have broad but safe Discord permissions so it can operate maximally effectively, including channel visibility/history when supported.
 §
-When Kevin references Discord history/context, use session_search and concise repo/state files; Hermes lacks Discord channel-history API access unless messages were delivered to the agent.
+For unclear Discord follow-ups or channel-history references, Kevin expects Hermes to use session_search/repo state before asking; Hermes cannot access Discord history unless messages were delivered to it.
