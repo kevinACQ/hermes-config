@@ -168,8 +168,16 @@ Verification before reporting done:
 - scan prompt for `[pause` / vocal tags.
 - `git status --short hermes-v3` to confirm only V3 files are in the intended folder.
 
+Google Sheets OAuth bootstrap:
+- When Kevin says Google Workspace OAuth is complete, first run `python ${HERMES_HOME:-$HOME/.hermes}/skills/productivity/google-workspace/scripts/setup.py --check` and verify `AUTHENTICATED`.
+- If the Apps Script webhook is not deployed yet, use the Sheets API/Python client to create the Hermes memory/eval spreadsheet directly: create tabs `Hermes Calls`, `Hermes Memory Candidates`, `Hermes Evals`, `Hermes Weekly Trend`; write headers; add `Hermes Evals` weighted-score formulas; append one synthetic validation row; then write `HERMES_MEMORY_SHEET_ID=<sheet_id>` to `/Users/kevin/projects/voice-onboarding-mvp/.env`.
+- Patch `hermes-v3/webhook-hermes-memory.js` to default to the created Sheet ID instead of `PASTE_SHEET_ID_HERE`, while still allowing `PropertiesService.getScriptProperties().getProperty('HERMES_MEMORY_SHEET_ID')` to override it.
+- Phone numbers written through Sheets API can be interpreted as formulas if they start with `+`; write them as text by prefixing an apostrophe, e.g. `"'+173****4101"`.
+- Verify Sheets setup with `google_api.py sheets get <sheet_id> "Hermes Calls!A1:E3"` or equivalent Python Sheets API read.
+
 External-action boundary:
 - Creating the actual Retell agent calls the external Retell API and depends on `RETELL_WEBHOOK_URL`, Retell keys, and voice IDs. Prepare scripts first; run the API creation only after webhook deployment/env readiness is clear.
+- Hermes's current Google Workspace OAuth scopes include Sheets/Drive read but do not include Apps Script deployment scopes, so Hermes can create/verify the Sheet but cannot automatically deploy the Apps Script webhook unless those scopes are added. If blocked, give Kevin the exact file to paste/deploy and ask only for the Web App URL.
 - Recommended next order after prep: deploy Apps Script, set `HERMES_MEMORY_SHEET_ID`, run `testHermesWebhook()`, set `RETELL_WEBHOOK_URL`, then run `./create-hermes-agent.sh` and `./call-hermes.sh`.
 
 ## Backend Work to Look For
