@@ -210,6 +210,17 @@ Hermes V3 pass/fail eval rule:
 - Preferred Sheet columns for pass/fail evals: overall_verdict, useful_response_pass, concise_pass, one_question_pass, memory_behavior_pass, turn_taking_pass, advisor_value_pass, tone_fit_pass, critical_fail, top_issue, fix_action, kevin_notes.
 - Local criteria doc: `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/pass-fail-eval-criteria.md`.
 
+Hermes V3 persistent Retell memory bridge:
+- Use this when Kevin asks Retell/Hermes Voice to remember past calls. The reusable implementation is `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/memory_bridge.py` with tests in `hermes-v3/test_memory_bridge.py`.
+- Design rule: Retell is the voice interface, not the memory source of truth. Google Sheets is review/approval UI; GBrain is durable semantic memory; Retell receives a compact briefing.
+- The bridge compiles approved rows from `Hermes Memory Candidates` plus recent call context into a concise memory briefing. Approved memories are durable; recent call context must be labeled as not-yet-durable truth.
+- Outbound calls created by Hermes should use `memory_bridge.py --call`, which sends `retell_llm_dynamic_variables.memory_briefing` in the `POST /v2/create-phone-call` payload.
+- Inbound calls need a fallback because dynamic variables may not be present. Run `memory_bridge.py --sync-retell-prompt` to upsert a bounded `Persistent memory snapshot for inbound calls` into the Retell LLM prompt.
+- Always test first when changing the bridge: `python -m unittest hermes-v3/test_memory_bridge.py -v`, `python -m py_compile hermes-v3/memory_bridge.py`, `bash -n hermes-v3/call-hermes.sh`.
+- Verify Retell state by GETting the LLM and checking that the prompt contains both `{{memory_briefing}}` and `Persistent memory snapshot for inbound calls`; never print the API key.
+- Seed/approve only explicit user-stated durable memories. Current seed examples: Kevin wants Hermes Voice to remember prior conversations across calls; Kevin dislikes over-explaining and prefers concise useful voice answers; current project goal is persistent long-term memory for RetellAI/Hermes Voice.
+- Karpathy validation doc for this build: `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/karpathy-memory-validation.md`.
+
 ## Backend Work to Look For
 
 In ACQ_Vantage, inspect:
