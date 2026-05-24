@@ -139,7 +139,16 @@ Fast deliverables:
 
 ## Hermes V3 Retell Agent Build Pattern
 
-When Kevin asks to “start” or “autoplan each phase” for the Hermes/Retell voice advisor, treat it as an execution prep task, not just a recommendation.
+Current verified Hermes V3 state as of 2026-05-24:
+- Retell agent exists: `Hermes V3 — Kevin Voice Advisor`, agent ID `agent_5fd02629f0ee9491a55d6f87bb`, LLM ID `llm_60eb98cc38fb9e8e4e4b370cf7e1`.
+- Retell phone/from number: `+17159998518`; Kevin test/to number: `+17373764101`.
+- Voice: Noah via ElevenLabs (`11labs-Noah`); model: `gpt-4.1`, temperature `0.7`.
+- Apps Script webhook is deployed and verified: `https://script.google.com/macros/s/AKfycbypbwdbc40d9Agwmsl0XhUByWkx8h88DAJbCWxR-fiKMSGUI528SnEH_nqXrNY31OKmPQ/exec`.
+- Active observability Sheet ID: `1PxI279CzBfkb96ChL3vpCP9V8eaeiytOAhciQqmqgTc`.
+- `/Users/kevin/projects/voice-onboarding-mvp/.env` contains the active Retell and webhook values; do not expose or repeat API keys in chat.
+- Post-call schema and webhook are working; do not change schema, webhook URL, voice, or agent-level settings during prompt iteration.
+
+When Kevin asks to “start” or “autoplan each phase” for the Hermes/Retell voice advisor, treat it as an execution prep or self-improvement task, not just a recommendation.
 
 Default implementation path:
 1. Load this skill plus `plan`/`google-workspace` if Sheets or eval setup is involved.
