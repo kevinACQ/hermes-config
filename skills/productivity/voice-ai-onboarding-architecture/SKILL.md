@@ -202,6 +202,14 @@ Hermes V3 self-improvement call loop:
 Observed failure to remember for prompt iteration:
 - When Kevin asks about to-dos, memory, prior context, or what Hermes remembers, the voice agent should answer in one sentence. It should say that the current voice call only has context injected into this call and persistent cross-call memory is the next system layer. It should not explain architecture unless Kevin asks, and if Kevin says “just say got it,” obey exactly.
 
+Hermes V3 pass/fail eval rule:
+- Kevin corrected that numbered rankings are prone to hallucinations. Treat PASS/FAIL criteria as the source of truth; numeric scores are optional secondary trend diagnostics only.
+- A call is PASS only if all must-pass checks pass and no critical fail appears.
+- Must-pass checks: useful response to the real ask; concise by default; one-question discipline; accurate memory behavior; turn-taking/direct-instruction obedience; advisor value; tone fit.
+- Critical fails: hallucinated memory or claimed access it did not have; revealed/asked for secrets; ignored Kevin's direct instruction to stop/be brief/hang up; repeated the same corrected behavior from the prior failed call; failed to capture the obvious durable memory candidate.
+- Preferred Sheet columns for pass/fail evals: overall_verdict, useful_response_pass, concise_pass, one_question_pass, memory_behavior_pass, turn_taking_pass, advisor_value_pass, tone_fit_pass, critical_fail, top_issue, fix_action, kevin_notes.
+- Local criteria doc: `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/pass-fail-eval-criteria.md`.
+
 ## Backend Work to Look For
 
 In ACQ_Vantage, inspect:
