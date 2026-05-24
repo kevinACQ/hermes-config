@@ -189,6 +189,19 @@ External-action boundary:
 - Hermes's current Google Workspace OAuth scopes include Sheets/Drive read but do not include Apps Script deployment scopes, so Hermes can create/verify the Sheet but cannot automatically deploy the Apps Script webhook unless those scopes are added. If blocked, give Kevin the exact file to paste/deploy and ask only for the Web App URL.
 - Recommended next order after prep: deploy Apps Script, set `HERMES_MEMORY_SHEET_ID`, run `testHermesWebhook()`, set `RETELL_WEBHOOK_URL`, then run `./create-hermes-agent.sh` and `./call-hermes.sh`.
 
+Hermes V3 self-improvement call loop:
+1. Trigger an outbound call with the Retell API using values from `/Users/kevin/projects/voice-onboarding-mvp/.env`; do not paste or print the API key. If `hermes-v3/call-hermes.sh` contains redacted auth text, bypass it with a small Python `urllib.request` POST to `https://api.retellai.com/v2/create-phone-call` using `RETELL_PHONE_NUMBER`, Kevin's test number, and `RETELL_AGENT_ID_HERMES`.
+2. Poll `GET https://api.retellai.com/v2/get-call/{call_id}` until `call_status` is ended and both transcript and `call_analysis` are present. Save the full JSON under `hermes-v3/last-call-{call_id}.json` for private analysis.
+3. Read the full transcript, not just extracted fields. Score the 10 rubric criteria: useful_diagnosis, one_question_discipline, boardy_flow, memory_capture, conciseness, turn_taking, latency, next_step_quality, tone_fit, would_call_again.
+4. Calculate weighted score with weights: 20%, 10%, 10%, 15%, 10%, 10%, 5%, 10%, 5%, 5% respectively.
+5. Identify one top issue only and one minimal `fix_action`; do not batch fixes.
+6. Append an eval row to `Hermes Evals!A:R` using the Google Workspace Sheets API. Column Q is left blank for Kevin's PASS/FAIL; Kevin's note overrides Hermes's self-diagnosis.
+7. Report concise results: call ID, duration/status, weighted score, top issue, proposed fix, extracted memory candidate, and ask Kevin for `PASS` or `FAIL: reason`.
+8. Patch the Retell LLM prompt only after Kevin gives FAIL or explicitly approves the fix. Always GET the current Retell LLM prompt before PATCHing. Never change schema, webhook URL, voice, or agent-level settings during prompt iteration.
+
+Observed failure to remember for prompt iteration:
+- When Kevin asks about to-dos, memory, prior context, or what Hermes remembers, the voice agent should answer in one sentence. It should say that the current voice call only has context injected into this call and persistent cross-call memory is the next system layer. It should not explain architecture unless Kevin asks, and if Kevin says “just say got it,” obey exactly.
+
 ## Backend Work to Look For
 
 In ACQ_Vantage, inspect:
