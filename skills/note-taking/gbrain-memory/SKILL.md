@@ -111,14 +111,20 @@ GBrain expansion:    skip, or optional Anthropic API key
 Discovery commands:
 
 ```bash
-export PATH="$HOME/.bun/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
 export GBRAIN_HOME=/Users/kevin/.hermes
 gbrain providers list
 gbrain providers explain --json
 gbrain config show
 command -v ollama || true
+pgrep -af '[o]llama' || true
+test -d "$HOME/Applications/Ollama.app" && echo "$HOME/Applications/Ollama.app exists" || true
+test -d /Applications/Ollama.app && echo "/Applications/Ollama.app exists" || true
+curl -sS --max-time 3 http://127.0.0.1:11434/api/version || true
 ollama list 2>&1 || true
 ```
+
+Kevin's no-admin Mac setup can still have Ollama working without `/Applications/Ollama.app`: the app may live at `~/Applications/Ollama.app`, with the CLI symlink at `~/.local/bin/ollama`, serving on `localhost:11434`. Do not infer Ollama is missing just because moving it to `/Applications` asked for an admin password; verify the user-space install and local API first.
 
 Setup once Ollama is installed/running:
 
