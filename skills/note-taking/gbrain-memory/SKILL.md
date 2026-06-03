@@ -148,6 +148,53 @@ GBRAIN_HOME=/Users/kevin/.hermes gbrain query "Kevin working style"
 
 If Ollama is not installed, report that as the single blocker. Do not suggest OAuth-browser-session hacks unless Kevin explicitly wants to build/maintain a custom adapter; they are fragile and outside GBrain's supported provider path.
 
+## Evaluating GBrain embedding quality and model tradeoffs
+
+Use this when Kevin asks whether Ollama embeddings are good enough, or asks to compare Ollama with GPT/Claude/API-key options for GBrain.
+
+Key framing:
+
+- For GBrain, distinguish **embedding/retrieval** from **reasoning/answer synthesis**.
+- Ollama `nomic-embed-text` is the current local embedding provider. GPT-5.5 and Claude Opus-style models are mainly reasoning models; they can synthesize retrieved memory but do not directly improve vector retrieval unless GBrain is configured with a stronger embedding provider.
+- Anthropic/Claude does not provide the core first-party embedding replacement in GBrain; an Anthropic key can help expansion/chat/reasoning, not the vector store itself.
+- Generic LLM benchmarks are less relevant than retrieval benchmarks and Kevin-specific recall tests.
+
+Relevant benchmark lenses for Kevin's use case:
+
+1. Retrieval accuracy — does the right memory page appear?
+2. Ranking quality — does the most specific page rank above generic pages like `people/kevin`?
+3. Recall under vague prompts — can GBrain find decisions when Kevin asks imprecisely?
+4. Latency — local Ollama vs cloud round trips.
+5. Privacy — local memory chunks vs provider upload.
+6. Operational reliability — local Ollama availability vs cloud API/rate-limit/key/billing dependencies.
+
+Live trace pattern to show real quality:
+
+```bash
+export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
+export GBRAIN_HOME=/Users/kevin/.hermes
+cd /Users/kevin/.hermes/brain
+printf '## CONFIG\n'; gbrain config show
+printf '\n## HEALTH\n'; gbrain health
+printf '\n## QUERY: Kevin working style\n'; gbrain query "Kevin working style" --limit 5
+printf '\n## QUERY: Retell voice onboarding memory\n'; gbrain query "Retell voice onboarding memory" --limit 5
+```
+
+Interpretation guidance:
+
+- If specific pages appear in top 3, Ollama is probably good enough.
+- If generic pages repeatedly outrank obvious specific pages, consider an embedding A/B test before switching providers.
+- For free/local alternatives, test `bge-m3` or `mxbai-embed-large` against `nomic-embed-text` on Kevin-specific queries. Do not switch blindly because dimension changes may require rebuilding/re-embedding the GBrain DB.
+- For paid upgrades, prefer a real embedding provider such as OpenAI embeddings or Voyage-style embeddings over reasoning models if the bottleneck is recall/ranking.
+
+Recommended A/B test workflow:
+
+1. Create 15-25 real Kevin queries covering preferences, GBrain setup, Retell voice memory, Claude project hub, config backup, and decisions.
+2. For each candidate embedding model, rebuild or use an isolated temporary GBrain DB with that model/dimension.
+3. Run `gbrain query "$QUERY" --limit 5` for each query.
+4. Score top-1, top-3, and top-5 hit rate, plus whether specific pages outrank generic pages.
+5. Switch only if the candidate materially improves top-3 specificity without unacceptable latency/setup cost.
+
 ## Maintenance pass workflow
 
 Use this when asked to run local GBrain sync/embed maintenance, especially from a cron job where no user is present.
