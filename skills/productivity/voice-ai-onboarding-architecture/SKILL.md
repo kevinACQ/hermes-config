@@ -211,7 +211,8 @@ Hermes V3 pass/fail eval rule:
 - Local criteria doc: `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/pass-fail-eval-criteria.md`.
 
 Hermes V3 persistent Retell memory bridge:
-- Use this when Kevin asks Retell/Hermes Voice to remember past calls. The reusable implementation is `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/memory_bridge.py` with tests in `hermes-v3/test_memory_bridge.py`.
+- Use this when Kevin asks Retell/Hermes Voice to remember past calls, reconnect outbound calling after Desktop/CLI migration, or trigger a Retell call from Hermes. The reusable implementation is `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/memory_bridge.py` with tests in `hermes-v3/test_memory_bridge.py`.
+- Desktop reconnection reference: `references/hermes-desktop-retell-connector.md`. Prefer the scoped connector wrapper (`~/.hermes/scripts/call_hermes_retell.sh`) that sources the voice project `.env` and calls Retell via API over asking for broad macOS Documents/Desktop permissions.
 - Design rule: Retell is the voice interface, not the memory source of truth. Google Sheets is review/approval UI; GBrain is durable semantic memory; Retell receives a compact briefing.
 - The bridge compiles approved rows from `Hermes Memory Candidates` plus recent call context into a concise memory briefing. Approved memories are durable; recent call context must be labeled as not-yet-durable truth.
 - Outbound calls created by Hermes should use `memory_bridge.py --call`, which sends `retell_llm_dynamic_variables.memory_briefing` in the `POST /v2/create-phone-call` payload.
@@ -244,6 +245,7 @@ Likely next build items:
 - Do not rely only on ElevenLabs Data Collection for all 40 fields.
 - Do not store long-term memory only inside ElevenLabs.
 - Do not put sensitive per-member data in a static knowledge base.
+- Do not request broad macOS folder permissions to restore Retell/Hermes voice behavior; first look for the existing project `.env`, Retell API scripts, webhook config, and connector wrapper.
 - Dynamic variables need test placeholders/defaults or dashboard testing can break.
 - Treat Google Sheets as demo/debug output, not production source of truth.
 
