@@ -6,7 +6,7 @@ User wants Hermes config, skills, and identity files continuously backed up to G
 §
 Kevin wants Hermes to operate as a quiet executive assistant alongside Claude Code, with zero new habits; 99%+ recommendations should go to Telegram at most once per day, and lower-confidence ideas should stay in Hermes's own workspace.
 §
-User wants concise, simple replies and wants plans shown inline or attached in-channel because Discord cannot show local saved plan files. Approval requests are last resort; ask only when extra permission is the single bottleneck.
+User wants concise, simple replies, inline/attached plans, and minimal approval prompts. Kevin prefers Hermes avoid broad macOS folder permissions; use explicit connectors/APIs/tool integrations like Claude Code when possible.
 §
 Kevin wants Hermes to have broad but safe Discord permissions so it can operate maximally effectively, including channel visibility/history when supported.
 §
