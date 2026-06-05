@@ -1,7 +1,7 @@
 model:
   default: gpt-5.5
   provider: openai-codex
-  base_url: https://chatgpt.com/backend-api/codex
+  base_url: ''
 providers: {}
 fallback_providers: '[copilot, anthropic]'
 credential_pool_strategies:
