@@ -139,14 +139,14 @@ Fast deliverables:
 
 ## Hermes V3 Retell Agent Build Pattern
 
-Current verified Hermes V3 state as of 2026-05-24:
+Current verified Hermes V3 state as of 2026-06-05:
 - Retell agent exists: `Hermes V3 — Kevin Voice Advisor`, agent ID `agent_5fd02629f0ee9491a55d6f87bb`, LLM ID `llm_60eb98cc38fb9e8e4e4b370cf7e1`.
-- Retell phone/from number: `+17159998518`; Kevin test/to number: `+17373764101`.
-- Voice: Noah via ElevenLabs (`11labs-Noah`); model: `gpt-4.1`, temperature `0.7`.
-- Apps Script webhook is deployed and verified: `https://script.google.com/macros/s/AKfycbypbwdbc40d9Agwmsl0XhUByWkx8h88DAJbCWxR-fiKMSGUI528SnEH_nqXrNY31OKmPQ/exec`.
-- Active observability Sheet ID: `1PxI279CzBfkb96ChL3vpCP9V8eaeiytOAhciQqmqgTc`.
+- Retell phone/from number: `+17159998518`.
+- Voice: custom ElevenLabs v3 voice (`custom_voice_17e84ee17f6d4992a42e8b4bd8`, `eleven_v3`). Retell API exposes the voice ID/model, not the human-readable clone name.
+- Retell LLM response engine is `retell-llm`; current model observed as `gpt-5.5`.
+- Webhook events include `call_started`, `call_ended`, and `call_analyzed`; post-call schema and webhook are working.
 - `/Users/kevin/projects/voice-onboarding-mvp/.env` contains the active Retell and webhook values; do not expose or repeat API keys in chat.
-- Post-call schema and webhook are working; do not change schema, webhook URL, voice, or agent-level settings during prompt iteration.
+- During prompt iteration, do not change schema, webhook URL, voice, or agent-level settings unless Kevin explicitly asks.
 
 When Kevin asks to “start” or “autoplan each phase” for the Hermes/Retell voice advisor, treat it as an execution prep or self-improvement task, not just a recommendation.
 
@@ -211,12 +211,15 @@ Hermes V3 pass/fail eval rule:
 - Local criteria doc: `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/pass-fail-eval-criteria.md`.
 
 Hermes V3 persistent Retell memory bridge:
-- Use this when Kevin asks Retell/Hermes Voice to remember past calls, reconnect outbound calling after Desktop/CLI migration, or trigger a Retell call from Hermes. The reusable implementation is `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/memory_bridge.py` with tests in `hermes-v3/test_memory_bridge.py`.
+- Use this when Kevin asks Retell/Hermes Voice to remember past calls, reconnect outbound calling after Desktop/CLI migration, support callers besides Kevin, detect new phone numbers, or trigger a Retell call from Hermes. The reusable implementation is `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/memory_bridge.py` with tests in `hermes-v3/test_memory_bridge.py`.
 - Desktop reconnection reference: `references/hermes-desktop-retell-connector.md`. Prefer the scoped connector wrapper (`~/.hermes/scripts/call_hermes_retell.sh`) that sources the voice project `.env` and calls Retell via API over asking for broad macOS Documents/Desktop permissions.
+- New-caller/profile reference: `references/hermes-retell-new-caller-profiles.md`. Ship the Retell prompt rule first so live behavior changes immediately, then deploy/paste the Apps Script webhook persistence if Apps Script management scope is unavailable.
 - Design rule: Retell is the voice interface, not the memory source of truth. Google Sheets is review/approval UI; GBrain is durable semantic memory; Retell receives a compact briefing.
 - The bridge compiles approved rows from `Hermes Memory Candidates` plus recent call context into a concise memory briefing. Approved memories are durable; recent call context must be labeled as not-yet-durable truth.
 - Outbound calls created by Hermes should use `memory_bridge.py --call`, which sends `retell_llm_dynamic_variables.memory_briefing` in the `POST /v2/create-phone-call` payload.
 - Inbound calls need a fallback because dynamic variables may not be present. Run `memory_bridge.py --sync-retell-prompt` to upsert a bounded `Persistent memory snapshot for inbound calls` into the Retell LLM prompt.
+- Multi-caller safety: if a caller is new/unknown or not Kevin, the Retell prompt should ask for their first name immediately (“Before we jump in, what should I call you?”) and treat them as a clean-slate profile. Do not apply Kevin's memories to unknown callers.
+- Profile persistence: the Apps Script webhook should maintain `Hermes User Profiles`, keyed by caller phone number, with `profile_status` (`known`/`needs_name`), `call_count`, last-call fields, and a bounded context summary. Memory candidates for non-Kevin callers should include caller identity/phone context for review.
 - Always test first when changing the bridge: `python -m unittest hermes-v3/test_memory_bridge.py -v`, `python -m py_compile hermes-v3/memory_bridge.py`, `bash -n hermes-v3/call-hermes.sh`.
 - Verify Retell state by GETting the LLM and checking that the prompt contains both `{{memory_briefing}}` and `Persistent memory snapshot for inbound calls`; never print the API key.
 - Seed/approve only explicit user-stated durable memories. Current seed examples: Kevin wants Hermes Voice to remember prior conversations across calls; Kevin dislikes over-explaining and prefers concise useful voice answers; current project goal is persistent long-term memory for RetellAI/Hermes Voice.
