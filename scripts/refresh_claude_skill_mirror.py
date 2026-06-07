@@ -143,8 +143,10 @@ def refresh() -> None:
     skills["external_dirs"] = external
 
     disabled = set(skills.get("disabled") or [])
-    # Disable all mirrored Claude skills by default. Explicit skill_view still works,
-    # but they won't appear in the always-on prompt skill catalog.
+    # Disable all mirrored Claude skills by default so they won't appear in the
+    # always-on prompt skill catalog. Load them by reading the mirrored files via
+    # the claude-code-skills index, or temporarily enable one if native skill_view
+    # semantics are required.
     disabled.update(name for name, _ in linked)
     # Archive/disable only low-value ambiguous native skills. Keep useful Hermes-native
     # skills like codex enabled; Claude duplicates are simply not mirrored.

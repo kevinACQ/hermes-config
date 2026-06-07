@@ -25,7 +25,14 @@ Hermes can read Kevin's Claude Code skills without copying them into Hermes.
 
 The mirrored Claude skills are intentionally disabled in Hermes config so they do not appear in the always-on skill catalog and burn prompt tokens invisibly.
 
-When Kevin explicitly asks for a Claude skill or names one, load it directly with `skill_view("<skill-name>")`. Direct loads still work even if the skill is disabled from the catalog.
+When Kevin explicitly asks for a Claude skill or names one:
+
+1. Read the mirrored skill file directly:
+   - `/Users/kevin/.hermes/external-repos/claude-code-skills/<skill-name>/SKILL.md`
+2. Follow it as authoritative workflow context for that task.
+3. Do not write to Claude-owned paths unless Kevin explicitly asks.
+
+If native `skill_view("<skill-name>")` behavior is required for one skill, temporarily remove that skill name from `skills.disabled`, reload skills, use it, then disable it again if it should stay out of the always-on catalog.
 
 ## Write-boundary policy
 
