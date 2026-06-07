@@ -52,9 +52,18 @@ def parse_name(skill_md: Path) -> str:
 
 def hermes_native_names() -> set[str]:
     names = set()
+    wrapper_root = HERMES_SKILLS / "claude-code"
     for md in HERMES_SKILLS.rglob("SKILL.md"):
         if any(part in {".archive", ".git", "node_modules", "venv", ".venv"} for part in md.parts):
             continue
+        # Generated Claude wrappers are not native replacements; they depend on
+        # the symlink mirror staying populated. Ignore them when deciding
+        # whether to skip mirrored Claude source skills.
+        try:
+            md.relative_to(wrapper_root)
+            continue
+        except ValueError:
+            pass
         names.add(parse_name(md))
     return names
 
