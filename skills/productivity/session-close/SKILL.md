@@ -40,8 +40,13 @@ Run when Kevin says:
 2. Save only durable, future-useful facts to Hermes memory.
    - Do not save stale task progress, commit SHAs, temporary status, or one-off outcomes.
    - If memory is full, report the fact instead of forcing a messy replacement.
-3. If a reusable workflow was created or corrected, save/update a Hermes skill under `~/.hermes/skills`.
-4. Give Kevin a concise closeout:
+3. Actively review the session for skill-library updates before closing.
+   - Treat user corrections to style, format, workflow, or sequence as first-class skill signals.
+   - Prefer patching the skill that was in play; otherwise update an existing class-level umbrella skill.
+   - Use `references/` for session-specific technical detail rather than creating narrow one-off skills.
+   - Say `Nothing to save.` only when the session truly produced no durable workflow or preference learning.
+4. If a reusable workflow was created or corrected, save/update a Hermes skill under `~/.hermes/skills`.
+5. Give Kevin a concise closeout:
    - what changed
    - where it lives
    - what is protected
