@@ -146,7 +146,10 @@ def refresh() -> None:
     # Disable all mirrored Claude skills by default. Explicit skill_view still works,
     # but they won't appear in the always-on prompt skill catalog.
     disabled.update(name for name, _ in linked)
-    disabled.update(HERMES_NATIVE_PREFERRED)  # humanizer/codex ambiguity control; codex can be re-enabled if desired.
+    # Archive/disable only low-value ambiguous native skills. Keep useful Hermes-native
+    # skills like codex enabled; Claude duplicates are simply not mirrored.
+    disabled.add("humanizer")
+    disabled.discard("codex")
     disabled.discard("session-close")  # Hermes-native safe close stays available.
     skills["disabled"] = sorted(disabled)
 
