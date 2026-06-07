@@ -44,6 +44,8 @@ Hermes must not write session memory, architecture notes, or lifecycle output in
 
 ## Maintenance
 
+For the full mirror architecture, conflict policy, safety boundaries, and verification checklist, see `references/token-efficient-claude-skill-mirror.md`.
+
 After adding/removing Claude skills, run:
 
 ```bash
