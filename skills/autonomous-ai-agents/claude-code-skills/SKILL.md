@@ -23,14 +23,27 @@ Hermes can read Kevin's Claude Code skills without copying them into Hermes.
 
 ## Token policy
 
-The mirrored Claude skills are intentionally disabled in Hermes config so they do not appear in the always-on skill catalog and burn prompt tokens invisibly.
+The mirrored Claude skills are intentionally disabled in Hermes config so they do not appear in the always-on prompt skill catalog and burn prompt tokens invisibly.
 
-When Kevin explicitly asks for a Claude skill or names one:
+Hermes exposes Claude workflows through **thin local wrapper skills** under:
 
-1. Read the mirrored skill file directly:
+- `/Users/kevin/.hermes/skills/claude-code/<skill-name>/SKILL.md`
+
+Each wrapper registers a Hermes slash command such as `/boardroom`, then tells Hermes to read the mirrored Claude source file as the authoritative workflow.
+
+When Kevin explicitly asks for a Claude skill, names one, or invokes a Claude-style slash command:
+
+1. Prefer the Hermes wrapper command/skill if it exists.
+2. Read the mirrored Claude source skill directly:
    - `/Users/kevin/.hermes/external-repos/claude-code-skills/<skill-name>/SKILL.md`
-2. Follow it as authoritative workflow context for that task.
-3. Do not write to Claude-owned paths unless Kevin explicitly asks.
+3. Follow it as authoritative workflow context for that task.
+4. Do not write to Claude-owned paths unless Kevin explicitly asks.
+
+If a wrapper is missing for a mirrored Claude skill, regenerate wrappers with:
+
+```bash
+python3 /Users/kevin/.hermes/scripts/generate_claude_skill_wrappers.py
+```
 
 If native `skill_view("<skill-name>")` behavior is required for one skill, temporarily remove that skill name from `skills.disabled`, reload skills, use it, then disable it again if it should stay out of the always-on catalog.
 
@@ -46,10 +59,13 @@ Hermes must not write session memory, architecture notes, or lifecycle output in
 
 For the full mirror architecture, conflict policy, safety boundaries, and verification checklist, see `references/token-efficient-claude-skill-mirror.md`.
 
+For the Hermes slash-wrapper pattern that lets Kevin invoke mirrored Claude skills as `/boardroom`, `/prototype-first`, etc., see `references/hermes-slash-wrappers.md`.
+
 After adding/removing Claude skills, run:
 
 ```bash
 python3 /Users/kevin/.hermes/scripts/refresh_claude_skill_mirror.py
+python3 /Users/kevin/.hermes/scripts/generate_claude_skill_wrappers.py
 ```
 
 Then restart Hermes or use `/reload-skills` in a fresh-capable interface.
