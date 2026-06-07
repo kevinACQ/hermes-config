@@ -211,7 +211,8 @@ Hermes V3 pass/fail eval rule:
 - Local criteria doc: `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/pass-fail-eval-criteria.md`.
 
 Hermes V3 persistent Retell memory bridge:
-- Use this when Kevin asks Retell/Hermes Voice to remember past calls, reconnect outbound calling after Desktop/CLI migration, support callers besides Kevin, detect new phone numbers, or trigger a Retell call from Hermes. The reusable implementation is `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/memory_bridge.py` with tests in `hermes-v3/test_memory_bridge.py`.
+- Use this when Kevin asks Retell/Hermes Voice to remember past calls, reconnect outbound calling after Desktop/CLI migration, support callers besides Kevin, detect new phone numbers, trigger a Retell call from Hermes, or archive full Retell transcripts into long-term memory. The reusable implementation is `/Users/kevin/projects/voice-onboarding-mvp/hermes-v3/memory_bridge.py` with tests in `hermes-v3/test_memory_bridge.py`.
+- For verbatim transcript archival into GBrain, load `references/retell-transcript-gbrain-ingestor.md`. The recommended v1 is local raw markdown/JSON + structured session pages under `~/.hermes/brain`, not Supabase first.
 - Desktop reconnection reference: `references/hermes-desktop-retell-connector.md`. Prefer the scoped connector wrapper (`~/.hermes/scripts/call_hermes_retell.sh`) that sources the voice project `.env` and calls Retell via API over asking for broad macOS Documents/Desktop permissions.
 - New-caller/profile reference: `references/hermes-retell-new-caller-profiles.md`. Ship the Retell prompt rule first so live behavior changes immediately, then deploy/paste the Apps Script webhook persistence if Apps Script management scope is unavailable.
 - Design rule: Retell is the voice interface, not the memory source of truth. Google Sheets is review/approval UI; GBrain is durable semantic memory; Retell receives a compact briefing.

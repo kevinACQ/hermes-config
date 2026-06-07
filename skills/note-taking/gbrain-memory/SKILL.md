@@ -87,6 +87,10 @@ Do not write:
 - Raw full transcripts unless Kevin explicitly asks
 - Low-confidence inferences without labeling them
 
+Explicit raw-transcript exception:
+
+- If Kevin explicitly asks for Retell/Hermes Voice calls to be remembered word-for-word, store transcripts in the raw layer under `~/.hermes/brain/raw/retell-calls/` and create linked structured session pages under `~/.hermes/brain/sessions/retell/`. Keep extracted durable memories separate and approval-gated; the transcript archive is evidence, not automatically compiled memory.
+
 ## No-API-key GBrain setup
 
 Use this when Kevin asks how to make GBrain work without API keys or with OAuth-only resources.
