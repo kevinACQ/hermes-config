@@ -179,6 +179,13 @@ your conversation context.
 - **"cua-driver not installed"** — Run `hermes tools` and enable Computer
   Use; the setup will install cua-driver via its upstream script. Requires
   macOS + Accessibility + Screen Recording permissions.
+- **Installer cannot write `/Applications` on a locked-down Mac** — prefer the
+  official path first, but on work laptops without admin/write access you can
+  install the bare `cua-driver` binary into `~/.local/bin` as a user-space
+  fallback, then set `CUA_DRIVER_RS_UPDATE_CHECK=0` in Hermes's `.env` if the
+  MCP stdio server hangs after printing update notices. See
+  `references/cua-driver-user-space-install.md` for the exact probe and
+  fallback recipe.
 - **Element index stale** — SOM indices come from the last `capture` call.
   If the UI shifted (new tab opened, dialog appeared), re-capture before
   clicking.
