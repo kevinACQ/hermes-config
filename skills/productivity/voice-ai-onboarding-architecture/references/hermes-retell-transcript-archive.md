@@ -84,10 +84,34 @@ python3 hermes-v3/memory_bridge.py \
 
 - Never print Retell API keys.
 - Treat Apps Script / Sheets as cloud review UI; it cannot directly write to Kevin's local `~/.hermes/brain` files.
-- Prefer local polling/fetching of Retell calls over exposing Kevin's Mac as a public webhook target.
+- Prefer local polling/fetching of Retell calls over exposing Kevin's Mac as a public webhook target when scheduled or manual archive is acceptable.
+- If Kevin explicitly wants after-call/event-triggered archival, use a tiny deterministic local webhook server behind a tunnel + shared secret, not an LLM-agent webhook, for local file/GBrain side effects.
 - Match Kevin's phone with exact or redacted-safe patterns like `+173****4101`.
 - Store raw transcript and raw JSON first; create a structured session page second.
 - Optional `--gbrain-sync` should run import/embed after files are written.
+
+## Event-triggered local archive pattern
+
+Use this when the requirement is “archive immediately after each Retell call” rather than “poll later.”
+
+Recommended flow:
+
+```text
+Retell call_analyzed webhook
+→ Google Apps Script logs/normalizes the payload in Sheets
+→ Apps Script forwards the payload to a public tunnel URL
+→ local deterministic archive server receives `/retell-archive`
+→ `memory_bridge.py` ingests transcript/raw JSON/session page
+→ optional GBrain import/embed sync
+```
+
+Implementation notes:
+
+- Keep the server narrow: accept Retell-style JSON, validate the optional shared secret, call the archive bridge, return JSON status.
+- Keep secrets in the project `.env` or Apps Script properties; never paste API keys or tunnel secrets in chat.
+- Google Apps Script cannot reach `127.0.0.1` on Kevin's Mac; it needs a public forwarding layer such as Cloudflare Tunnel/ngrok/Tailscale Funnel.
+- Verify locally first with `curl http://127.0.0.1:<port>/health` and a synthetic `/retell-archive` POST before wiring Apps Script.
+- Use an event-driven server only for this immediate-after-call requirement; otherwise the lower-exposure local polling/fetch path remains preferred.
 
 ## Verification
 
