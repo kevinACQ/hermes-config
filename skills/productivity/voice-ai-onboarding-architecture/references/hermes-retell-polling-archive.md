@@ -96,6 +96,26 @@ cat ~/.hermes/state/retell-archive-state.json
 launchctl print gui/$(id -u)/ai.hermes.retell-archive
 ```
 
+## Guided manual eval pattern
+
+When Kevin asks to manually eval this system, do not hand him a long list of commands. Hermes should run every non-human step and ask Kevin to do only the physical/manual part: make the test call.
+
+Flow:
+
+1. Hermes checks launchd baseline: `launchctl print gui/$(id -u)/ai.hermes.retell-archive` should show `last exit code = 0` and `run interval = 3600 seconds`.
+2. Hermes runs baseline archive: `./hermes-v3/archive-recent-retell-calls.sh`; expected before the call is usually `selected: 0`, `archived: 0`.
+3. Ask Kevin to call the Retell number and say a unique code word/phrase. Give exactly one phrase to say, then ask him to reply `done`.
+4. After Kevin replies `done`, Hermes runs the archive script again. Pass condition: `archived: 1` for the new call.
+5. Hermes reads the returned `raw_transcript` file and answers Kevin's code-word question from the transcript.
+6. Hermes verifies GBrain indexing with `GBRAIN_HOME="$HOME/.hermes" PATH="$HOME/.bun/bin:$HOME/.local/bin:$PATH" gbrain search "<code word>"`. Plain `gbrain` may be missing from launch shell PATH; set `GBRAIN_HOME` and prepend Bun/local bins.
+7. Hermes immediately re-runs the archive script. Pass condition: `selected: 0`, `archived: 0` to prove idempotency.
+8. Hermes checks `~/.hermes/logs/retell-archive.err.log`; pass condition: empty/no new errors.
+
+Reporting style for Kevin:
+- Give a tiny status update first: baseline pass, waiting on manual call, or eval pass/fail.
+- Put the condensed numbered checklist/key actions near the bottom, not only pass/fail criteria.
+- If Kevin asks “what code word did I say?”, answer directly from the archived transcript first, then give eval status.
+
 ## When to use a tunnel instead
 
 Only revisit Cloudflare/ngrok if Kevin proves a concrete need for GBrain to update within seconds after a call. If real-time is required, add a durable queue/retry layer first; do not rely on Apps Script forwarding directly to a local server with no replay.
