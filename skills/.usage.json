@@ -116,6 +116,32 @@
     "use_count": 2,
     "view_count": 2
   },
+  "hermes-debug": {
+    "archived_at": null,
+    "created_at": "2026-06-08T13:12:40.569909+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": "2026-06-08T13:12:40.570876+00:00",
+    "last_viewed_at": "2026-06-08T13:12:40.569924+00:00",
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
+  },
+  "hermes-desktop-troubleshooting": {
+    "archived_at": null,
+    "created_at": "2026-06-08T13:13:28.199355+00:00",
+    "created_by": "agent",
+    "last_patched_at": null,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "macos-computer-use": {
     "archived_at": null,
     "created_at": "2026-06-07T17:10:42.583659+00:00",
