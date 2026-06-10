@@ -77,6 +77,19 @@
     "use_count": 130,
     "view_count": 130
   },
+  "github-repo-management": {
+    "archived_at": null,
+    "created_at": "2026-06-10T17:00:14.391618+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": "2026-06-10T17:00:14.392356+00:00",
+    "last_viewed_at": "2026-06-10T17:00:14.391633+00:00",
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
+  },
   "google-workspace": {
     "archived_at": null,
     "created_at": "2026-06-05T21:51:55.207131+00:00",
