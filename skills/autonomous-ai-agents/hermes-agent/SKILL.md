@@ -806,6 +806,36 @@ and logs — avoids shell-escaping backslashes in bash.
 
 ---
 
+## Consolidated Hermes Operations
+
+This umbrella also absorbs formerly narrow Hermes-maintenance skills. Use the labeled subsections below instead of looking for one-session troubleshooting entries.
+
+### Desktop UI / Gateway / Session Store Mismatches
+
+When Hermes Desktop reports a missing session or the UI, gateway runtime, and `state.db` disagree:
+
+1. Check the Desktop/gateway process status and logs first.
+2. Compare visible session IDs/titles with `hermes sessions list` and the SQLite-backed session store.
+3. Verify profile/home path (`HERMES_HOME`, active profile, and Desktop runtime config) before modifying data.
+4. Prefer restoring/rerouting session metadata over deleting session files.
+5. Capture the exact UI error and the CLI query used to prove the mismatch.
+
+Archived source package: `hermes-desktop-troubleshooting` including `references/desktop-session-not-found.md`.
+
+### Skill Authoring and Skill Library Migration
+
+When authoring or migrating Hermes skills:
+
+- Use class-level SKILL.md files with `references/`, `templates/`, and `scripts/` for detail.
+- Required frontmatter starts at byte 0 with `---` and includes at least `name` and `description`; keep descriptions concise and trigger-focused.
+- `skill_manage(action='create')` writes user-local skills. In-repo bundled skills require direct file writes under the repo and a commit.
+- When importing Claude Code/gstack/plugin skill libraries, preserve source-of-truth packages and avoid flattening support files that relative links depend on.
+- Validate package integrity before archiving or demoting any skill.
+
+Archived source packages: `hermes-agent-skill-authoring` and `external-skill-library-migration`.
+
+---
+
 ## Troubleshooting
 
 ### Voice not working

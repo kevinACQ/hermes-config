@@ -1,0 +1,67 @@
+---
+name: productivity-integrations
+description: "Use when operating productivity SaaS and document tools: Google Workspace, Airtable, Notion, email, maps, Office/PDF/OCR documents, and meeting-summary pipelines."
+version: 1.0.0
+author: Hermes Agent
+license: MIT
+platforms: [linux, macos, windows]
+metadata:
+  hermes:
+    tags: [productivity, google-workspace, airtable, notion, documents, email, maps, meetings]
+    related_skills: [apple-macos-automation]
+---
+
+# Productivity Integrations
+
+## Overview
+
+Umbrella for user-facing productivity systems and document workflows. It consolidates SaaS APIs (Google Workspace, Airtable, Notion), document tools (PowerPoint, PDF editing, OCR), location utilities, and meeting-summary pipelines.
+
+## When to Use
+
+- User asks to read/write Gmail, Calendar, Drive, Docs, Sheets, Contacts.
+- User asks to query or update Airtable/Notion.
+- User asks to create/edit PowerPoint, PDF text, or extract text from scans/PDFs.
+- User asks for geocoding, POIs, routes, or timezones.
+- User asks to operate a Teams meeting-summary pipeline.
+
+## Safety Rules
+
+- Never send email, create/delete calendar events, mutate SaaS records, or publish documents without user confirmation unless explicitly pre-approved.
+- Check authentication before first use.
+- Return handles (record IDs, document IDs, event IDs, file paths, URLs) after side effects.
+- Treat personal email, contacts, calendar, location, and meeting data as sensitive.
+
+## Service Modes
+
+### Google Workspace
+
+Use Hermes-managed OAuth and `gws`/Python wrappers for Gmail, Calendar, Drive, Sheets, Docs, and Contacts. Prefer Gmail app-password email skill only when email-only setup is desired.
+
+### Airtable & Notion
+
+Inspect schema/database fields before writing. Use filters/upserts cautiously and verify changed record IDs.
+
+### Documents
+
+For PowerPoint/PDF/OCR work, keep original files backed up, write output to a new path when possible, and verify by reopening/extracting text.
+
+### Maps
+
+Use OpenStreetMap/OSRM-style tools for geocoding/routes/timezones. Include units, timestamp, and ambiguity notes.
+
+### Meeting Pipelines
+
+For Teams summaries, inspect pipeline status before replaying jobs or manipulating subscriptions.
+
+## Verification Checklist
+
+- [ ] Auth checked.
+- [ ] User approved high-impact mutations.
+- [ ] Output IDs/URLs/paths captured.
+- [ ] Documents were opened/read back or text-extracted after edits.
+- [ ] No secrets or unrelated personal data exposed.
+
+## Consolidated Legacy Skills
+
+Absorbed `google-workspace`, `airtable`, `notion`, `himalaya`, `maps`, `powerpoint`, `nano-pdf`, `ocr-and-documents`, and `teams-meeting-pipeline`.

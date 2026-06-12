@@ -315,6 +315,31 @@ If you catch yourself thinking:
 | **3. Hypothesis** | Form theory, test minimally, one variable at a time | Confirmed or new hypothesis |
 | **4. Implementation** | Create regression test, fix root cause, verify | Bug resolved, all tests pass |
 
+## Debugger-Specific Workflows
+
+This umbrella absorbs narrow runtime-debugger skills. Use the four-phase root-cause process above, then pick the debugger transport that matches the runtime.
+
+### Python: pdb and debugpy
+
+Use for Python services, scripts, tests, and async workers when print/log instrumentation is insufficient.
+
+- Reproduce with the smallest failing pytest or script command first.
+- Prefer `pytest -k ... -vv --tb=long` and `breakpoint()`/`pdb` for local failures.
+- Use `debugpy` when attaching a DAP-capable debugger to a long-running process or container.
+- Keep debug ports bound to loopback unless the user explicitly needs remote access.
+- Remove temporary breakpoints/listeners before finalizing.
+
+### Node.js: --inspect and Chrome DevTools Protocol
+
+Use for Node/TypeScript runtime failures, event-loop issues, browserless JS services, or heap/performance inspection.
+
+- Start the target with `node --inspect` or `--inspect-brk` only after reproducing the failing path.
+- Use CDP/DevTools to set breakpoints, inspect scopes, capture console output, and evaluate expressions.
+- Avoid leaving inspector ports open on public interfaces.
+- Verify the fix with the original test/build command, not just an interactive debugger observation.
+
+Archived source packages: `python-debugpy` and `node-inspect-debugger`.
+
 ## Hermes Agent Integration
 
 ### Investigation Tools
