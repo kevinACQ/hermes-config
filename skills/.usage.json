@@ -51,19 +51,6 @@
     "use_count": 1,
     "view_count": 1
   },
-  "baoyu-infographic": {
-    "archived_at": null,
-    "created_at": "2026-06-12T07:03:16.781412+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 0,
-    "pinned": false,
-    "state": "active",
-    "use_count": 0,
-    "view_count": 0
-  },
   "boardroom": {
     "archived_at": null,
     "created_at": "2026-06-07T19:12:26.280761+00:00",
@@ -129,32 +116,6 @@
     "use_count": 0,
     "view_count": 0
   },
-  "excalidraw": {
-    "archived_at": null,
-    "created_at": "2026-06-12T07:03:16.790965+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 0,
-    "pinned": false,
-    "state": "active",
-    "use_count": 0,
-    "view_count": 0
-  },
-  "external-skill-library-migration": {
-    "archived_at": null,
-    "created_at": "2026-06-07T18:18:37.839199+00:00",
-    "created_by": "agent",
-    "last_patched_at": "2026-06-07T18:18:58.383135+00:00",
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 1,
-    "pinned": false,
-    "state": "active",
-    "use_count": 0,
-    "view_count": 0
-  },
   "gbrain-memory": {
     "archived_at": null,
     "created_at": "2026-06-05T06:10:18.993972+00:00",
@@ -207,19 +168,6 @@
     "use_count": 15,
     "view_count": 15
   },
-  "hermes-agent-skill-authoring": {
-    "archived_at": null,
-    "created_at": "2026-06-07T18:08:41.416363+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": "2026-06-12T07:03:28.482119+00:00",
-    "last_viewed_at": "2026-06-12T07:03:28.481010+00:00",
-    "patch_count": 0,
-    "pinned": false,
-    "state": "active",
-    "use_count": 3,
-    "view_count": 3
-  },
   "hermes-debug": {
     "archived_at": null,
     "created_at": "2026-06-08T13:12:40.569909+00:00",
@@ -232,32 +180,6 @@
     "state": "active",
     "use_count": 1,
     "view_count": 1
-  },
-  "hermes-desktop-troubleshooting": {
-    "archived_at": null,
-    "created_at": "2026-06-08T13:13:28.199355+00:00",
-    "created_by": "agent",
-    "last_patched_at": "2026-06-08T13:13:42.597690+00:00",
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 1,
-    "pinned": false,
-    "state": "active",
-    "use_count": 0,
-    "view_count": 0
-  },
-  "huggingface-hub": {
-    "archived_at": null,
-    "created_at": "2026-06-12T07:03:16.804392+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 0,
-    "pinned": false,
-    "state": "active",
-    "use_count": 0,
-    "view_count": 0
   },
   "jupyter-live-kernel": {
     "archived_at": null,
@@ -272,48 +194,9 @@
     "use_count": 0,
     "view_count": 0
   },
-  "llama-cpp": {
-    "archived_at": null,
-    "created_at": "2026-06-12T07:03:16.811557+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 0,
-    "pinned": false,
-    "state": "active",
-    "use_count": 0,
-    "view_count": 0
-  },
   "manim-video": {
     "archived_at": null,
     "created_at": "2026-06-12T07:03:16.814381+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 0,
-    "pinned": false,
-    "state": "active",
-    "use_count": 0,
-    "view_count": 0
-  },
-  "node-inspect-debugger": {
-    "archived_at": null,
-    "created_at": "2026-06-12T07:03:16.818619+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 0,
-    "pinned": false,
-    "state": "active",
-    "use_count": 0,
-    "view_count": 0
-  },
-  "obliteratus": {
-    "archived_at": null,
-    "created_at": "2026-06-12T07:03:16.821213+00:00",
     "created_by": null,
     "last_patched_at": null,
     "last_used_at": null,
@@ -414,19 +297,6 @@
     "state": "active",
     "use_count": 3,
     "view_count": 3
-  },
-  "python-debugpy": {
-    "archived_at": null,
-    "created_at": "2026-06-12T07:03:16.834835+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
-    "patch_count": 0,
-    "pinned": false,
-    "state": "active",
-    "use_count": 0,
-    "view_count": 0
   },
   "requesting-code-review": {
     "archived_at": null,
