@@ -420,13 +420,13 @@
     "created_at": "2026-06-05T21:51:55.207131+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-07T17:38:55.434012+00:00",
-    "last_used_at": "2026-06-07T19:20:00.498102+00:00",
-    "last_viewed_at": "2026-06-07T19:20:00.492186+00:00",
+    "last_used_at": "2026-06-12T07:04:31.810317+00:00",
+    "last_viewed_at": "2026-06-12T07:04:31.807311+00:00",
     "patch_count": 1,
     "pinned": false,
     "state": "active",
-    "use_count": 3,
-    "view_count": 3
+    "use_count": 4,
+    "view_count": 4
   },
   "heartmula": {
     "archived_at": null,
@@ -446,13 +446,13 @@
     "created_at": "2026-06-05T17:22:39.945496+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-06-08T12:44:11.933902+00:00",
-    "last_viewed_at": "2026-06-08T12:44:11.933031+00:00",
+    "last_used_at": "2026-06-12T07:04:31.809193+00:00",
+    "last_viewed_at": "2026-06-12T07:04:31.805738+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 14,
-    "view_count": 14
+    "use_count": 15,
+    "view_count": 15
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
@@ -992,13 +992,13 @@
     "created_at": "2026-06-08T02:01:15.941364+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-06-08T02:01:15.944033+00:00",
-    "last_viewed_at": "2026-06-08T02:01:15.941388+00:00",
+    "last_used_at": "2026-06-12T07:04:31.811251+00:00",
+    "last_viewed_at": "2026-06-12T07:04:31.808226+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 1,
-    "view_count": 1
+    "use_count": 2,
+    "view_count": 2
   },
   "teams-meeting-pipeline": {
     "archived_at": null,
