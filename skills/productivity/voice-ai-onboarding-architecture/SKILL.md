@@ -216,6 +216,7 @@ Hermes V3 persistent Retell memory bridge:
 - Desktop reconnection reference: `references/hermes-desktop-retell-connector.md`. Prefer the scoped connector wrapper (`~/.hermes/scripts/call_hermes_retell.sh`) that sources the voice project `.env` and calls Retell via API over asking for broad macOS Documents/Desktop permissions.
 - New-caller/profile reference: `references/hermes-retell-new-caller-profiles.md`. Ship the Retell prompt rule first so live behavior changes immediately, then deploy/paste the Apps Script webhook persistence if Apps Script management scope is unavailable.
 - Transcript archive references: `references/hermes-retell-transcript-archive.md` for raw transcript/GBrain structure and `references/hermes-retell-polling-archive.md` for the preferred local poller implementation and guided manual eval pattern. When Kevin explicitly wants full Retell call memory, save raw transcript + raw JSON into GBrain markdown first, then create structured session pages and only promote approved/high-confidence facts to compiled memory.
+- Prototype interview call reference: `references/retell-prototype-interview-calls.md`. For long-form discovery/interview calls, tune Retell to listen longer before placing the call: increase max duration, lower interruption sensitivity, lower responsiveness, reduce backchannels, and inject the interview script as the dynamic `memory_briefing`.
 - Default archive architecture: keep Apps Script/Sheets as the immediate operational memory path, then run a local launchd poller hourly to fetch completed Retell calls and sync GBrain. Avoid public tunnel/local webhook server by default; use it only if Kevin proves second-level GBrain freshness is needed and add durable retry/queue semantics first.
 - Design rule: Retell is the voice interface, not the memory source of truth. Google Sheets is review/approval UI; GBrain is durable semantic memory and raw transcript archive; Retell receives a compact briefing.
 - Apps Script / Sheets cannot directly write to Kevin's local `~/.hermes/brain`; prefer local polling/fetching of Retell calls over exposing Kevin's Mac as a public webhook target. Mark non-Kevin/skipped calls as processed in the poller sentinel too, otherwise the latest skipped call can be selected forever.
@@ -254,6 +255,7 @@ Likely next build items:
 - Do not store long-term memory only inside ElevenLabs.
 - Do not put sensitive per-member data in a static knowledge base.
 - Do not request broad macOS folder permissions to restore Retell/Hermes voice behavior; first look for the existing project `.env`, Retell API scripts, webhook config, and connector wrapper.
+- Do not use default short-call / high-interruption Retell settings for Kevin discovery interviews. Kevin gives long context dumps; tune for patient listening before calling.
 - Dynamic variables need test placeholders/defaults or dashboard testing can break.
 - Treat Google Sheets as demo/debug output, not production source of truth.
 
