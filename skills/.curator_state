@@ -1,9 +1,9 @@
 {
-  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260612-070316",
-  "last_run_at": "2026-06-12T07:03:16.270799+00:00",
-  "last_run_duration_seconds": 579.098396,
-  "last_run_summary": "auto: no changes; llm: Completed umbrella-building consolidation pass.\n\nHuman summary:\n- Created 11 new class-level umbrella skills:\n  - `apple-macos-automation`\n  - `github-workflows`\n  - `ai-coding-agents`\n  - `kanban-workflows`\n  - `web-design-prototyping`\n  -…\narchived 52 skill(s):\n  • external-skill-library-migration → hermes-agent\n  • hermes-agent-skill-authoring → hermes-agent\n  • hermes-desktop-troubleshooting → hermes-agent\n  • node-inspect-debugger → systematic-debugging\n  • python-debugpy → systematic-debugging\n  • airtable — pruned (stale)\n  • apple-notes — pruned (stale)\n  • apple-reminders — pruned (stale)\n  • architecture-diagram — pruned (stale)\n  • arxiv — pruned (stale)\n  … and 42 more\nfull report: hermes curator status\nkeep an umbrella stable: hermes curator pin hermes-agent",
+  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260619-154359",
+  "last_run_at": "2026-06-19T15:43:59.834118+00:00",
+  "last_run_duration_seconds": 5.037354,
+  "last_run_summary": "auto: no changes; llm: no change",
   "last_run_summary_shown_at": null,
   "paused": false,
-  "run_count": 1
+  "run_count": 2
 }
