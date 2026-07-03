@@ -1,0 +1,190 @@
+{
+  "jobs": [
+    {
+      "id": "db1c86734830",
+      "name": "hermes-config-auto-backup",
+      "prompt": "Run a backup pass for the local Hermes config repo at ~/.hermes/external-repos/hermes-config. Use terminal to run: cd ~/.hermes/external-repos/hermes-config && /Users/kevin/.hermes/hermes-agent/venv/bin/python auto_backup.py. If there are no changes, say so briefly. If a commit was created and pushed, report success briefly. If the command fails, report the error clearly. Do not ask questions.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 60,
+        "display": "every 60m"
+      },
+      "schedule_display": "every 60m",
+      "repeat": {
+        "times": null,
+        "completed": 317
+      },
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-05-09T00:40:05.588724-05:00",
+      "paused_reason": null,
+      "created_at": "2026-04-22T17:28:14.444076-05:00",
+      "next_run_at": "2026-05-09T00:41:42.777442-05:00",
+      "last_run_at": "2026-05-08T23:41:42.777442-05:00",
+      "last_status": "error",
+      "last_error": "Agent completed but produced empty response (model error, timeout, or misconfiguration)",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null
+    },
+    {
+      "id": "9b3df006d0aa",
+      "name": "Refresh Claude Code project hub",
+      "prompt": "Refresh Kevin's local Hermes Claude Code project hub by using the script output already injected as context. Do not schedule any other cron jobs. If the script reports success, respond with one short local-only status line. If it reports an error, summarize the failure and the script path to inspect: ~/.hermes/scripts/refresh_claude_code_projects.py",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "refresh_claude_code_projects.py",
+      "schedule": {
+        "kind": "interval",
+        "minutes": 60,
+        "display": "every 60m"
+      },
+      "schedule_display": "every 60m",
+      "repeat": {
+        "times": null,
+        "completed": 145
+      },
+      "enabled": false,
+      "state": "paused",
+      "paused_at": "2026-05-09T00:40:06.652839-05:00",
+      "paused_reason": null,
+      "created_at": "2026-05-02T06:46:18.646742-05:00",
+      "next_run_at": "2026-05-09T00:41:42.783980-05:00",
+      "last_run_at": "2026-05-08T23:41:42.783980-05:00",
+      "last_status": "error",
+      "last_error": "Agent completed but produced empty response (model error, timeout, or misconfiguration)",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": {
+        "platform": "discord",
+        "chat_id": "1499242568440090634",
+        "chat_name": "KevinACQ x Hermes Agent / #acq-agent-home",
+        "thread_id": null
+      }
+    },
+    {
+      "id": "06c652689cdb",
+      "name": "GBrain local sync and embed",
+      "prompt": "Run a local GBrain maintenance pass for Kevin's Hermes brain.\n\nSelf-contained context:\n- GBrain repo: /Users/kevin/.hermes/brain\n- GBrain home: /Users/kevin/.hermes\n- GBrain CLI: /Users/kevin/.bun/bin/gbrain\n- Use PATH=\"$HOME/.bun/bin:$PATH\" and GBRAIN_HOME=/Users/kevin/.hermes.\n- Do not schedule any cron jobs from this cron-run session.\n- Delivery is local-only; final response should be short.\n\nRequired workflow:\n1. Load/use the gbrain-memory skill if available.\n2. Run:\n   export PATH=\"$HOME/.bun/bin:$PATH\"\n   export GBRAIN_HOME=/Users/kevin/.hermes\n   cd /Users/kevin/.hermes/brain\n   gbrain sync --repo /Users/kevin/.hermes/brain --no-embed\n   gbrain embed --stale\n3. If sync fails because the CLI cannot open PGLite, use MCP fallback when available:\n   mcp_gbrain_sync_brain(repo=\"/Users/kevin/.hermes/brain\", no_embed=true)\n4. If embed fails because OPENAI_API_KEY or another embedding provider credential is missing, report it as a warning, not fatal. Keyword search still works; vector/hybrid embeddings remain degraded.\n5. Do not submit an MCP background embed job unless a GBrain worker is already active. If you submit a diagnostic job and it remains waiting, cancel it.\n6. Verify with stats/health via CLI or MCP.\n7. Final local-only status must include: sync status, embedding status/coverage, and any required action. Keep it concise.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 60,
+        "display": "every 60m"
+      },
+      "schedule_display": "every 60m",
+      "repeat": {
+        "times": null,
+        "completed": 1149
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-06T23:01:02.593006-05:00",
+      "next_run_at": "2026-07-03T10:41:29.148153-07:00",
+      "last_run_at": "2026-07-03T09:41:29.148153-07:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified workspace API usage limits. You will regain access on 2026-08-01 at 00:00 UTC.'}, 'request_id': 'req_011CcfTT8hi773daTPV7uQuB'}",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": {
+        "platform": "discord",
+        "chat_id": "1499242568440090634",
+        "chat_name": "KevinACQ x Hermes Agent / #acq-agent-home",
+        "thread_id": null
+      }
+    },
+    {
+      "id": "cb516db31d25",
+      "name": "GBrain weekly doctor",
+      "prompt": "Run weekly health checks for Kevin's Hermes GBrain integration. Use commands equivalent to: export PATH=\"$HOME/.bun/bin:$PATH\"; export GBRAIN_HOME=/Users/kevin/.hermes; cd /Users/kevin/.hermes/brain; gbrain doctor --json && gbrain stats. Concisely report health score, warnings, and any action needed. Do not schedule additional cron jobs.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * 1",
+        "display": "0 9 * * 1"
+      },
+      "schedule_display": "0 9 * * 1",
+      "repeat": {
+        "times": null,
+        "completed": 9
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-06T23:01:08.086717-05:00",
+      "next_run_at": "2026-07-06T09:00:00-07:00",
+      "last_run_at": "2026-06-29T09:00:40.789386-07:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified workspace API usage limits. You will regain access on 2026-07-01 at 00:00 UTC.'}, 'request_id': 'req_011CcXq6znBeuQJQ4VvhhFvT'}",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": {
+        "platform": "discord",
+        "chat_id": "1499242568440090634",
+        "chat_name": "KevinACQ x Hermes Agent / #acq-agent-home",
+        "thread_id": null
+      }
+    },
+    {
+      "id": "401b57cdc855",
+      "name": "GBrain daily update check",
+      "prompt": "Check whether the upstream GBrain repo has updates. Use commands equivalent to: cd /Users/kevin/.hermes/external-repos/gbrain; git fetch origin master; git log --oneline HEAD..origin/master. If updates exist, summarize them and recommend Kevin approve before installing. Never auto-upgrade or schedule additional cron jobs.",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 10 * * *",
+        "display": "0 10 * * *"
+      },
+      "schedule_display": "0 10 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 59
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-05-06T23:01:12.944813-05:00",
+      "next_run_at": "2026-07-04T10:00:00-07:00",
+      "last_run_at": "2026-07-03T10:00:30.593347-07:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified workspace API usage limits. You will regain access on 2026-08-01 at 00:00 UTC.'}, 'request_id': 'req_011CcfUuHHEnHbRzj4hRMFeE'}",
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": {
+        "platform": "discord",
+        "chat_id": "1499242568440090634",
+        "chat_name": "KevinACQ x Hermes Agent / #acq-agent-home",
+        "thread_id": null
+      }
+    }
+  ],
+  "updated_at": "2026-07-03T10:00:30.594222-07:00"
+}
