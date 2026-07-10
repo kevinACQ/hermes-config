@@ -242,7 +242,7 @@
     "last_viewed_at": "2026-06-07T17:36:49.673788+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "active",
+    "state": "stale",
     "use_count": 1,
     "view_count": 1
   },
@@ -424,7 +424,7 @@
     "last_viewed_at": "2026-06-08T02:01:15.942931+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "active",
+    "state": "stale",
     "use_count": 1,
     "view_count": 1
   },
