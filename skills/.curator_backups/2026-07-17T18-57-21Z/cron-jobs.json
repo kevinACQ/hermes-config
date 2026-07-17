@@ -89,17 +89,17 @@
       "schedule_display": "every 60m",
       "repeat": {
         "times": null,
-        "completed": 809
+        "completed": 1370
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-05-06T23:01:02.593006-05:00",
-      "next_run_at": "2026-06-12T00:17:29.788801-07:00",
-      "last_run_at": "2026-06-11T23:17:29.788801-07:00",
-      "last_status": "ok",
-      "last_error": null,
+      "next_run_at": "2026-07-17T12:10:18.582217-07:00",
+      "last_run_at": "2026-07-17T11:10:18.582217-07:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified workspace API usage limits. You will regain access on 2026-08-01 at 00:00 UTC.'}, 'request_id': 'req_011Cd85YoxJNsT5SJccprdh3'}",
       "last_delivery_error": null,
       "deliver": "local",
       "origin": {
@@ -127,17 +127,17 @@
       "schedule_display": "0 9 * * 1",
       "repeat": {
         "times": null,
-        "completed": 6
+        "completed": 11
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-05-06T23:01:08.086717-05:00",
-      "next_run_at": "2026-06-15T09:00:00-07:00",
-      "last_run_at": "2026-06-08T09:00:42.021957-07:00",
-      "last_status": "ok",
-      "last_error": null,
+      "next_run_at": "2026-07-20T09:00:00-07:00",
+      "last_run_at": "2026-07-13T09:00:48.710154-07:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified workspace API usage limits. You will regain access on 2026-08-01 at 00:00 UTC.'}, 'request_id': 'req_011CczLSQ98SX7LHT1hUszJK'}",
       "last_delivery_error": null,
       "deliver": "local",
       "origin": {
@@ -165,17 +165,17 @@
       "schedule_display": "0 10 * * *",
       "repeat": {
         "times": null,
-        "completed": 38
+        "completed": 73
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-05-06T23:01:12.944813-05:00",
-      "next_run_at": "2026-06-12T10:00:00-07:00",
-      "last_run_at": "2026-06-11T10:01:05.333085-07:00",
-      "last_status": "ok",
-      "last_error": null,
+      "next_run_at": "2026-07-18T10:00:00-07:00",
+      "last_run_at": "2026-07-17T10:00:13.006422-07:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified workspace API usage limits. You will regain access on 2026-08-01 at 00:00 UTC.'}, 'request_id': 'req_011Cd7zCoAHBsD6ksgLu4VK9'}",
       "last_delivery_error": null,
       "deliver": "local",
       "origin": {
@@ -186,5 +186,5 @@
       }
     }
   ],
-  "updated_at": "2026-06-11T23:17:29.789027-07:00"
+  "updated_at": "2026-07-17T11:10:18.582423-07:00"
 }
