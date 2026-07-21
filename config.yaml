@@ -1,5 +1,5 @@
 model:
-  default: claude-opus-4-8
+  default: claude-fable-5
   provider: anthropic
   base_url: ''
 providers: {}
