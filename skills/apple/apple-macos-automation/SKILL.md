@@ -72,6 +72,15 @@ Do not use for cloud productivity apps when a first-party API skill exists (Goog
 - Use `capture_after=true` or recapture after state-changing actions.
 - Do not click permission dialogs, password prompts, payment UI, or anything outside the user's request.
 
+## Existing Signed-In Chrome Sessions
+
+When the isolated browser profile lacks the user's existing login state or extensions and the user explicitly wants the already-open Chrome profile, use Chrome AppleScript automation rather than asking them to sign in again. Load `references/chrome-existing-session-automation.md` for the prerequisite toggle, stable tab targeting, SPA interaction patterns, and financial-action verification rules.
+
+Key pitfalls:
+- **Allow JavaScript from Apple Events** is under the macOS **View → Developer** menu, not Chrome Settings; explain this in layman's terms when needed.
+- Never assume the active tab remains fixed. Re-find the target by URL/title before every read or action.
+- After cancellation, booking, or another irreversible action, read the resulting success page and capture the confirmation handle before reporting completion.
+
 ## Package Notes
 
 Detailed legacy package content was consolidated from the former narrow skills: `imessage`, `apple-notes`, `apple-reminders`, `findmy`, and `macos-computer-use`. If a low-level CLI flag or cua-driver install recipe is missing here, restore the archived package and promote the specific reusable detail into this umbrella's references.
