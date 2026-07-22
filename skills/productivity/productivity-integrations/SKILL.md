@@ -32,6 +32,15 @@ Umbrella for user-facing productivity systems and document workflows. It consoli
 - Return handles (record IDs, document IDs, event IDs, file paths, URLs) after side effects.
 - Treat personal email, contacts, calendar, location, and meeting data as sensitive.
 
+### Travel bookings and other financial checkouts
+
+- Do all reversible preparation, but leave the final charge or booking submission to the user unless they explicitly authorize that exact transaction after reviewing the final state.
+- Before cancelling an existing reservation, first verify replacement availability, dates, occupancy, total price, and cancellation policy. For the old reservation, capture the no-fee deadline and the exact fee shown in the final cancellation dialog.
+- Distinguish **free cancellation** from a **settled refund**. A successful cancellation with a $0 fee proves no cancellation penalty; it does not prove that a prior card charge has posted back. Capture the cancellation number, confirmation email, and later verify the card ledger when a refund is expected.
+- Treat browser autofill and payment-extension interactions as state-changing events. Immediately afterward, re-read and compare room/rate, stay dates, guest count, taxes, grand total, guest identity, and cancellation terms. Sites can silently switch room types or totals during navigation/autofill.
+- Card fields in cross-origin PCI iframes may be unreadable from page automation. Do not claim card verification from parent-page DOM; ask the user to confirm the card/last four shown by the payment extension, then verify every non-card field and the final total before submission.
+- Never copy or expose full card numbers, CVVs, or payment tokens. Stop if the room, total, cancellation policy, guest identity, or billing identity differs from the approved values.
+
 ## Service Modes
 
 ### Google Workspace
@@ -65,6 +74,8 @@ For hotel/flight replacement, cancellation, refund, or booking tasks, load `refe
 - [ ] Output IDs/URLs/paths captured.
 - [ ] Documents were opened/read back or text-extracted after edits.
 - [ ] No secrets or unrelated personal data exposed.
+- [ ] For travel/checkout: room or item, dates, guest/quantity, taxes, grand total, cancellation/refund terms, and billing identity were rechecked after autofill and immediately before submission.
+- [ ] Cancellation number was captured; any promised refund was verified separately from the cancellation confirmation.
 
 ## Consolidated Legacy Skills
 
