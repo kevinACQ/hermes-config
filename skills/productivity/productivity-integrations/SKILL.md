@@ -67,6 +67,8 @@ For Teams summaries, inspect pipeline status before replaying jobs or manipulati
 
 For hotel/flight replacement, cancellation, refund, or booking tasks, load `references/travel-reservation-financial-safeguards.md`. Verify replacement availability and its all-in price/policy before cancelling the original, inspect the final cancellation fee text, capture cancellation and booking confirmation handles, and stop before any new charge until the user approves the exact total. Never equate a successful no-fee cancellation with a settled card refund unless the payment ledger confirms it.
 
+When the workflow uses the user's already-authenticated browser profile, needs a receipt-download fallback, or replaces an old stay on Calendar, also load `references/authenticated-browser-receipts-calendar.md`. It covers signed-in Chrome continuity, printable-page-to-PDF verification, multi-day event deletion, and post-save Calendar searches.
+
 ## Verification Checklist
 
 - [ ] Auth checked.
@@ -76,6 +78,8 @@ For hotel/flight replacement, cancellation, refund, or booking tasks, load `refe
 - [ ] No secrets or unrelated personal data exposed.
 - [ ] For travel/checkout: room or item, dates, guest/quantity, taxes, grand total, cancellation/refund terms, and billing identity were rechecked after autofill and immediately before submission.
 - [ ] Cancellation number was captured; any promised refund was verified separately from the cancellation confirmation.
+- [ ] Receipt file was reopened or structurally validated, and its exact path was reported.
+- [ ] Calendar mutations were independently verified after Save/Delete by a fresh search; multi-day result rows were not mistaken for separate events.
 
 ## Consolidated Legacy Skills
 
