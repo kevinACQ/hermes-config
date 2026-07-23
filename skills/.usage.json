@@ -472,13 +472,13 @@
     "created_at": "2026-06-05T20:33:38.607338+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-16T22:07:09.826879+00:00",
-    "last_used_at": "2026-07-23T10:09:54.258367+00:00",
-    "last_viewed_at": "2026-07-23T10:09:54.255993+00:00",
+    "last_used_at": "2026-07-23T10:10:41.328381+00:00",
+    "last_viewed_at": "2026-07-23T10:10:41.327300+00:00",
     "patch_count": 20,
     "pinned": false,
     "state": "active",
-    "use_count": 11,
-    "view_count": 11
+    "use_count": 12,
+    "view_count": 12
   },
   "x-public-article-reading": {
     "archived_at": null,
