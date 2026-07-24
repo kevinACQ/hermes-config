@@ -90,6 +90,19 @@
     "use_count": 2,
     "view_count": 2
   },
+  "creative-production-workflows": {
+    "archived_at": null,
+    "created_at": "2026-07-24T19:31:28.816630+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": "2026-07-24T19:31:28.826005+00:00",
+    "last_viewed_at": "2026-07-24T19:31:28.816662+00:00",
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
+  },
   "evaluating-llms-harness": {
     "archived_at": null,
     "created_at": "2026-06-12T07:03:16.789890+00:00",
@@ -115,19 +128,6 @@
     "state": "active",
     "use_count": 302,
     "view_count": 302
-  },
-  "gif-search": {
-    "archived_at": null,
-    "created_at": "2026-06-12T07:03:16.793324+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:26:50.477287+00:00",
-    "last_viewed_at": "2026-07-24T19:26:50.458900+00:00",
-    "patch_count": 0,
-    "pinned": false,
-    "state": "stale",
-    "use_count": 1,
-    "view_count": 1
   },
   "github-workflows": {
     "archived_at": null,
@@ -194,6 +194,19 @@
     "use_count": 1,
     "view_count": 1
   },
+  "media-content-workflows": {
+    "archived_at": null,
+    "created_at": "2026-07-24T19:31:28.073362+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": "2026-07-24T19:31:28.078297+00:00",
+    "last_viewed_at": "2026-07-24T19:31:28.073383+00:00",
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
+  },
   "obsidian": {
     "archived_at": null,
     "created_at": "2026-06-07T17:36:49.673784+00:00",
@@ -227,32 +240,6 @@
     "last_patched_at": null,
     "last_used_at": "2026-07-24T19:27:38.021682+00:00",
     "last_viewed_at": "2026-07-24T19:27:37.974167+00:00",
-    "patch_count": 0,
-    "pinned": false,
-    "state": "stale",
-    "use_count": 1,
-    "view_count": 1
-  },
-  "p5js": {
-    "archived_at": null,
-    "created_at": "2026-06-12T07:03:16.826557+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:26:25.526416+00:00",
-    "last_viewed_at": "2026-07-24T19:26:25.522897+00:00",
-    "patch_count": 0,
-    "pinned": false,
-    "state": "stale",
-    "use_count": 1,
-    "view_count": 1
-  },
-  "pretext": {
-    "archived_at": null,
-    "created_at": "2026-06-12T07:03:16.833430+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:26:25.527282+00:00",
-    "last_viewed_at": "2026-07-24T19:26:25.524690+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "stale",
@@ -337,6 +324,19 @@
     "use_count": 1,
     "view_count": 1
   },
+  "software-engineering-lifecycle": {
+    "archived_at": null,
+    "created_at": "2026-07-24T19:31:27.991547+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": "2026-07-24T19:31:28.009915+00:00",
+    "last_viewed_at": "2026-07-24T19:31:27.991636+00:00",
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
+  },
   "touchdesigner-mcp": {
     "archived_at": null,
     "created_at": "2026-06-12T07:03:16.849032+00:00",
@@ -368,13 +368,13 @@
     "created_at": "2026-07-24T19:17:19.732627+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-07-24T19:17:36.076491+00:00",
-    "last_used_at": "2026-07-24T19:27:46.891458+00:00",
-    "last_viewed_at": "2026-07-24T19:27:46.886763+00:00",
+    "last_used_at": "2026-07-24T19:31:28.055490+00:00",
+    "last_viewed_at": "2026-07-24T19:31:28.043459+00:00",
     "patch_count": 2,
     "pinned": false,
     "state": "active",
-    "use_count": 1,
-    "view_count": 1
+    "use_count": 3,
+    "view_count": 3
   },
   "x-public-article-reading": {
     "archived_at": null,
@@ -396,19 +396,6 @@
     "last_patched_at": null,
     "last_used_at": "2026-07-24T19:27:46.893519+00:00",
     "last_viewed_at": "2026-07-24T19:27:46.890289+00:00",
-    "patch_count": 0,
-    "pinned": false,
-    "state": "stale",
-    "use_count": 1,
-    "view_count": 1
-  },
-  "youtube-content": {
-    "archived_at": null,
-    "created_at": "2026-06-12T07:03:16.853197+00:00",
-    "created_by": null,
-    "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:27:52.337329+00:00",
-    "last_viewed_at": "2026-07-24T19:27:52.330819+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "stale",
