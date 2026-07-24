@@ -10,6 +10,8 @@ User wants concise replies with key actions near the bottom, minimal approval pr
 §
 Kevin prefers broad but safe Discord access, including channel visibility/history.
 §
-For unclear Discord follow-ups or channel-history references, Kevin expects Hermes to use session_search/repo state before asking; Hermes cannot access Discord history unless messages were delivered to it.
+For Discord follow-ups, Kevin expects session/repo lookup first; undelivered history is inaccessible.
 §
 Private contact — Kevin Gong (self): primary/default +1 512-666-0655; alternate +1 737-376-4101. Do not expose unnecessarily.
+§
+Private contact — Drew Thompson: +1 646-246-5818. Do not expose unnecessarily.
