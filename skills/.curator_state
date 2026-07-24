@@ -1,8 +1,8 @@
 {
-  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260717-185721",
+  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260724-192512",
   "last_run_at": "2026-07-24T19:25:12.472020+00:00",
-  "last_run_duration_seconds": 1.610971,
-  "last_run_summary": "auto: 2 reactivated",
+  "last_run_duration_seconds": 589.523195,
+  "last_run_summary": "auto: 2 reactivated; llm: Completed the umbrella-building consolidation pass.\n\n### Umbrellas created\n\n1. **`software-engineering-lifecycle`**\n   - Absorbed planning, feasibility spikes, TDD, root-cause debugging, dogfood QA, and independent code review.\n   - Preserv…\narchived 13 skill(s):\n  • ascii-art — pruned (stale)\n  • ascii-video — pruned (stale)\n  • dogfood — pruned (stale)\n  • gif-search — pruned (stale)\n  • manim-video — pruned (stale)\n  • p5js — pruned (stale)\n  • plan — pruned (stale)\n  • pretext — pruned (stale)\n  • requesting-code-review — pruned (stale)\n  • spike — pruned (stale)\n  … and 3 more\nfull report: hermes curator status",
   "last_run_summary_shown_at": null,
   "paused": false,
   "run_count": 7
