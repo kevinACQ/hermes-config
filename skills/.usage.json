@@ -199,13 +199,13 @@
     "created_at": "2026-06-05T17:22:39.945496+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-12T07:07:27.108890+00:00",
-    "last_used_at": "2026-07-23T10:56:03.096754+00:00",
-    "last_viewed_at": "2026-07-23T10:56:03.095818+00:00",
+    "last_used_at": "2026-07-24T19:25:23.108102+00:00",
+    "last_viewed_at": "2026-07-24T19:25:23.106943+00:00",
     "patch_count": 1,
     "pinned": false,
-    "state": "stale",
-    "use_count": 19,
-    "view_count": 19
+    "state": "active",
+    "use_count": 20,
+    "view_count": 20
   },
   "hermes-debug": {
     "archived_at": null,
@@ -450,7 +450,7 @@
     "last_viewed_at": "2026-07-23T10:56:02.022141+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "stale",
+    "state": "active",
     "use_count": 2,
     "view_count": 2
   },
