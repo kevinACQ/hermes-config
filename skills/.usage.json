@@ -17,26 +17,26 @@
     "created_at": "2026-06-12T07:03:16.778366+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
+    "last_used_at": "2026-07-24T19:26:08.750837+00:00",
+    "last_viewed_at": "2026-07-24T19:26:08.748026+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "stale",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 1,
+    "view_count": 1
   },
   "ascii-video": {
     "archived_at": null,
     "created_at": "2026-06-12T07:03:16.779371+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
+    "last_used_at": "2026-07-24T19:26:08.751691+00:00",
+    "last_viewed_at": "2026-07-24T19:26:08.749302+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "stale",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 1,
+    "view_count": 1
   },
   "audiocraft-audio-generation": {
     "archived_at": null,
@@ -95,13 +95,13 @@
     "created_at": "2026-06-12T07:03:16.786701+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
+    "last_used_at": "2026-07-24T19:26:08.752440+00:00",
+    "last_viewed_at": "2026-07-24T19:26:08.750046+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "stale",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 1,
+    "view_count": 1
   },
   "create-voice-ai-onboarding-agent": {
     "archived_at": null,
@@ -160,13 +160,13 @@
     "created_at": "2026-06-12T07:03:16.793324+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
+    "last_used_at": "2026-07-24T19:26:50.477287+00:00",
+    "last_viewed_at": "2026-07-24T19:26:50.458900+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "stale",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 1,
+    "view_count": 1
   },
   "github-workflows": {
     "archived_at": null,
@@ -238,13 +238,13 @@
     "created_at": "2026-06-12T07:03:16.814381+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
+    "last_used_at": "2026-07-24T19:26:25.525382+00:00",
+    "last_viewed_at": "2026-07-24T19:26:25.520600+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "stale",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 1,
+    "view_count": 1
   },
   "obsidian": {
     "archived_at": null,
@@ -290,13 +290,13 @@
     "created_at": "2026-06-12T07:03:16.826557+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
+    "last_used_at": "2026-07-24T19:26:25.526416+00:00",
+    "last_viewed_at": "2026-07-24T19:26:25.522897+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "stale",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 1,
+    "view_count": 1
   },
   "plan": {
     "archived_at": null,
@@ -316,13 +316,13 @@
     "created_at": "2026-06-12T07:03:16.833430+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
+    "last_used_at": "2026-07-24T19:26:25.527282+00:00",
+    "last_viewed_at": "2026-07-24T19:26:25.524690+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "stale",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 1,
+    "view_count": 1
   },
   "productivity-integrations": {
     "archived_at": null,
@@ -459,13 +459,13 @@
     "created_at": "2026-06-12T07:03:16.849032+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": null,
-    "last_viewed_at": null,
+    "last_used_at": "2026-07-24T19:26:50.768253+00:00",
+    "last_viewed_at": "2026-07-24T19:26:50.691760+00:00",
     "patch_count": 0,
     "pinned": false,
     "state": "stale",
-    "use_count": 0,
-    "view_count": 0
+    "use_count": 1,
+    "view_count": 1
   },
   "voice-ai-onboarding-architecture": {
     "archived_at": null,
