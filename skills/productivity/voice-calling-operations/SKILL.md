@@ -57,8 +57,13 @@ For a simulation in which Hermes calls Kevin while pretending to contact a busin
 5. Initiate the outbound call through the configured provider.
 6. Capture the provider’s verifiable call ID and initial status.
 7. Poll or inspect the completed call status, transcript, and error fields when available.
+8. For one-off scenarios that need a different opening, create disposable LLM/agent resources rather than modifying production. Clone only supported configuration fields, remove production tools/webhooks, place the call with `override_agent_id`, and delete both temporary resources after the call ends or errors.
 
-Do not say a call was placed unless the provider returned a real call identifier. Do not say it succeeded unless completion status or transcript evidence supports that claim.
+When cloning a Retell agent, treat coupled configuration fields atomically. In particular, do not copy `stt_mode: custom` without its required `custom_stt_config`; either copy the complete valid pair or omit both and use the provider default. Prefer a minimal allowlist over reposting the full GET response, which may contain read-only or conditionally required fields.
+
+Do not say a call was placed unless the provider returned a real call identifier. Do not say it succeeded unless completion status or transcript evidence supports that claim. If background-process output lags, independently query the provider’s recent-call list and match the temporary agent ID and timestamp before reporting initiation.
+
+See `references/retell-disposable-roleplay-resources.md` for the Retell-specific disposable-resource recipe and verification pattern.
 
 ## Safety and Privacy
 
