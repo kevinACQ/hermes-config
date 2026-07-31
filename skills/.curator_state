@@ -1,8 +1,8 @@
 {
-  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260724-192512",
+  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260731-192708",
   "last_run_at": "2026-07-31T19:27:08.903044+00:00",
-  "last_run_duration_seconds": 589.523195,
-  "last_run_summary": "auto: 9 reactivated",
+  "last_run_duration_seconds": 89.825584,
+  "last_run_summary": "auto: 9 reactivated; llm: No skills were archived or modified.\n\nThe 11 candidates form separate class-level domains, not prefix or workflow clusters:\n\n- **Creative platforms:** `comfyui` and `touchdesigner-mcp` are each substantial, self-contained platform packages …",
   "last_run_summary_shown_at": null,
   "paused": false,
   "run_count": 8
