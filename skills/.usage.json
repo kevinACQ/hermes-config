@@ -69,13 +69,13 @@
     "created_at": "2026-06-12T07:03:16.786701+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:26:08.752440+00:00",
-    "last_viewed_at": "2026-07-24T19:26:08.750046+00:00",
+    "last_used_at": "2026-07-31T19:27:20.674890+00:00",
+    "last_viewed_at": "2026-07-31T19:27:20.670769+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "stale",
-    "use_count": 1,
-    "view_count": 1
+    "state": "active",
+    "use_count": 2,
+    "view_count": 2
   },
   "create-voice-ai-onboarding-agent": {
     "archived_at": null,
@@ -147,26 +147,26 @@
     "created_at": "2026-06-12T07:03:16.800366+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:27:46.883169+00:00",
-    "last_viewed_at": "2026-07-24T19:27:46.878216+00:00",
+    "last_used_at": "2026-07-31T19:27:20.673591+00:00",
+    "last_viewed_at": "2026-07-31T19:27:20.668607+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "stale",
-    "use_count": 1,
-    "view_count": 1
+    "state": "active",
+    "use_count": 2,
+    "view_count": 2
   },
   "hermes-agent": {
     "archived_at": null,
     "created_at": "2026-06-05T17:22:39.945496+00:00",
     "created_by": null,
     "last_patched_at": "2026-06-12T07:07:27.108890+00:00",
-    "last_used_at": "2026-07-24T19:25:23.108102+00:00",
-    "last_viewed_at": "2026-07-24T19:25:23.106943+00:00",
+    "last_used_at": "2026-07-31T19:27:20.664361+00:00",
+    "last_viewed_at": "2026-07-31T19:27:20.663309+00:00",
     "patch_count": 1,
     "pinned": false,
     "state": "active",
-    "use_count": 20,
-    "view_count": 20
+    "use_count": 21,
+    "view_count": 21
   },
   "hermes-debug": {
     "archived_at": null,
@@ -186,13 +186,13 @@
     "created_at": "2026-06-12T07:03:16.807420+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:27:37.828510+00:00",
-    "last_viewed_at": "2026-07-24T19:27:37.822287+00:00",
+    "last_used_at": "2026-07-31T19:27:20.669789+00:00",
+    "last_viewed_at": "2026-07-31T19:27:20.660685+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "stale",
-    "use_count": 1,
-    "view_count": 1
+    "state": "active",
+    "use_count": 2,
+    "view_count": 2
   },
   "media-content-workflows": {
     "archived_at": null,
@@ -212,13 +212,13 @@
     "created_at": "2026-06-07T17:36:49.673784+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:27:35.970093+00:00",
-    "last_viewed_at": "2026-07-24T19:27:35.666436+00:00",
+    "last_used_at": "2026-07-31T19:27:20.655109+00:00",
+    "last_viewed_at": "2026-07-31T19:27:20.648815+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "stale",
-    "use_count": 2,
-    "view_count": 2
+    "state": "active",
+    "use_count": 3,
+    "view_count": 3
   },
   "office-hours": {
     "archived_at": null,
@@ -238,13 +238,13 @@
     "created_at": "2026-06-12T07:03:16.825239+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:27:38.021682+00:00",
-    "last_viewed_at": "2026-07-24T19:27:37.974167+00:00",
+    "last_used_at": "2026-07-31T19:27:20.672251+00:00",
+    "last_viewed_at": "2026-07-31T19:27:20.666837+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "stale",
-    "use_count": 1,
-    "view_count": 1
+    "state": "active",
+    "use_count": 2,
+    "view_count": 2
   },
   "productivity-integrations": {
     "archived_at": null,
@@ -281,7 +281,7 @@
     "last_viewed_at": "2026-07-24T19:27:09.162868+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "stale",
+    "state": "active",
     "use_count": 1,
     "view_count": 1
   },
@@ -310,6 +310,19 @@
     "state": "active",
     "use_count": 2,
     "view_count": 2
+  },
+  "skill-creator": {
+    "archived_at": null,
+    "created_at": "2026-07-31T19:27:20.659873+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_used_at": "2026-07-31T19:27:20.665766+00:00",
+    "last_viewed_at": "2026-07-31T19:27:20.659880+00:00",
+    "patch_count": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 1,
+    "view_count": 1
   },
   "skool-api": {
     "archived_at": null,
@@ -355,13 +368,13 @@
     "created_at": "2026-06-12T07:03:16.849032+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:26:50.768253+00:00",
-    "last_viewed_at": "2026-07-24T19:26:50.691760+00:00",
+    "last_used_at": "2026-07-31T19:27:20.836146+00:00",
+    "last_viewed_at": "2026-07-31T19:27:20.834751+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "stale",
-    "use_count": 1,
-    "view_count": 1
+    "state": "active",
+    "use_count": 2,
+    "view_count": 2
   },
   "voice-ai-onboarding-architecture": {
     "archived_at": null,
@@ -381,13 +394,13 @@
     "created_at": "2026-07-24T19:17:19.732627+00:00",
     "created_by": "agent",
     "last_patched_at": "2026-07-24T19:35:03.372013+00:00",
-    "last_used_at": "2026-07-24T19:57:54.272199+00:00",
-    "last_viewed_at": "2026-07-24T19:57:54.271391+00:00",
+    "last_used_at": "2026-07-31T19:27:20.840513+00:00",
+    "last_viewed_at": "2026-07-31T19:27:20.837250+00:00",
     "patch_count": 4,
     "pinned": false,
     "state": "active",
-    "use_count": 6,
-    "view_count": 6
+    "use_count": 7,
+    "view_count": 7
   },
   "x-public-article-reading": {
     "archived_at": null,
@@ -407,25 +420,25 @@
     "created_at": "2026-06-12T07:03:16.851833+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:27:46.893519+00:00",
-    "last_viewed_at": "2026-07-24T19:27:46.890289+00:00",
+    "last_used_at": "2026-07-31T19:27:20.841649+00:00",
+    "last_viewed_at": "2026-07-31T19:27:20.838258+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "stale",
-    "use_count": 1,
-    "view_count": 1
+    "state": "active",
+    "use_count": 2,
+    "view_count": 2
   },
   "yuanbao": {
     "archived_at": null,
     "created_at": "2026-06-12T07:03:16.854560+00:00",
     "created_by": null,
     "last_patched_at": null,
-    "last_used_at": "2026-07-24T19:27:52.309568+00:00",
-    "last_viewed_at": "2026-07-24T19:27:52.304542+00:00",
+    "last_used_at": "2026-07-31T19:27:20.844197+00:00",
+    "last_viewed_at": "2026-07-31T19:27:20.843524+00:00",
     "patch_count": 0,
     "pinned": false,
-    "state": "stale",
-    "use_count": 1,
-    "view_count": 1
+    "state": "active",
+    "use_count": 2,
+    "view_count": 2
   }
 }
