@@ -1,8 +1,8 @@
 {
-  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260731-192708",
+  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260807-201750",
   "last_run_at": "2026-08-07T20:17:50.710379+00:00",
-  "last_run_duration_seconds": 89.825584,
-  "last_run_summary": "auto: no changes",
+  "last_run_duration_seconds": 81.787807,
+  "last_run_summary": "auto: no changes; llm: Reviewed all 11 candidates and their complete directory packages, including support files, scripts, templates, tests, and workflows.\n\nNo valid umbrella consolidation was found:\n\n- **Creative tooling:** `comfyui` and `touchdesigner-mcp` are …",
   "last_run_summary_shown_at": null,
   "paused": false,
   "run_count": 9
