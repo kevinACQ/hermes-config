@@ -740,7 +740,7 @@ existed for Ctrl+J on Windows, so this is a harmless side effect.
 mintty / git-bash behaves the same (fullscreen on Alt+Enter) unless you
 disable Alt+Fn shortcuts in Options → Keys. Easier to just use Ctrl+Enter.
 
-**Diagnosing keybindings.** Run `python scripts/hermes-agent/keystroke_diagnostic.py`
+**Diagnosing keybindings.** Run `python <hermes-repo>/scripts/keystroke_diagnostic.py`
 (repo root) to see exactly how prompt_toolkit identifies each keystroke
 in the current terminal. Answers questions like "does Shift+Enter come
 through as a distinct key?" (almost never — most terminals collapse it
@@ -764,12 +764,11 @@ Hermes's own env scrubber dropping `SYSTEMROOT` / `WINDIR` / `COMSPEC`
 from the child env. Python's `socket` module needs `SYSTEMROOT` to locate
 `mswsock.dll`. Fixed via the `_WINDOWS_ESSENTIAL_ENV_VARS` allowlist in
 `tools/code_execution_tool.py`. If you still hit it, echo `os.environ`
-inside an `execute_code` block to confirm `SYSTEMROOT` is set. Full
-diagnostic recipe in `references/hermes-agent/execute-code-sandbox-env-windows.md`.
+inside an `execute_code` block to confirm `SYSTEMROOT` is set. The former standalone diagnostic reference was not present in the source package. Use the diagnostic steps in this section and inspect the current sandbox environment implementation directly.
 
 ### Testing / Contributing
 
-**`scripts/hermes-agent/run_tests.sh` doesn't work as-is on Windows** — it looks for
+**`<hermes-repo>/scripts/run_tests.sh` doesn't work as-is on Windows** — it looks for
 POSIX venv layouts (`.venv/bin/activate`). The Hermes-installed venv at
 `venv/Scripts/` has no pip or pytest either (stripped for install size).
 Workaround: install `pytest + pytest-xdist + pyyaml` into a system Python
@@ -778,7 +777,7 @@ Workaround: install `pytest + pytest-xdist + pyyaml` into a system Python
 ```bash
 "/c/Program Files/Python311/python" -m pip install --user pytest pytest-xdist pyyaml
 export PYTHONPATH="$(pwd)"
-"/c/Program Files/Python311/python" -m pytest scripts/hermes-agent/tests/foo/test_bar.py -v --tb=short -n 0
+"/c/Program Files/Python311/python" -m pytest <hermes-repo>/tests/foo/test_bar.py -v --tb=short -n 0
 ```
 
 Use `-n 0`, not `-n 4` — `pyproject.toml`'s default `addopts` already
@@ -787,7 +786,7 @@ includes `-n`, and the wrapper's CI-parity guarantees don't apply off POSIX.
 **POSIX-only tests need skip guards.** Common markers already in the codebase:
 - Symlinks — elevated privileges on Windows
 - `0o600` file modes — POSIX mode bits not enforced on NTFS by default
-- `signal.SIGALRM` — Unix-only (see `scripts/hermes-agent/tests/conftest.py::_enforce_test_timeout`)
+- `signal.SIGALRM` — Unix-only (see `<hermes-repo>/tests/conftest.py::_enforce_test_timeout`)
 - Winsock / Windows-specific regressions — `@pytest.mark.skipif(sys.platform != "win32", ...)`
 
 Use the existing skip-pattern style (`sys.platform == "win32"` or
@@ -820,7 +819,7 @@ When Hermes Desktop reports a missing session or the UI, gateway runtime, and `s
 4. Prefer restoring/rerouting session metadata over deleting session files.
 5. Capture the exact UI error and the CLI query used to prove the mismatch.
 
-Archived source package: `hermes-desktop-troubleshooting` including `references/hermes-agent/desktop-session-not-found.md`.
+The former desktop troubleshooting package is represented by this consolidated subsection; its separately named reference was not present in the source package.
 
 ### Skill Authoring and Skill Library Migration
 
@@ -934,7 +933,7 @@ hermes-agent/
 ├── gateway/              # Messaging gateway
 │   └── platforms/        # Platform adapters (telegram, discord, etc.)
 ├── cron/                 # Job scheduler
-├── scripts/hermes-agent/tests/                # ~3000 pytest tests
+├── <hermes-repo>/tests/                # ~3000 pytest tests
 └── website/              # Docusaurus docs site
 ```
 
@@ -993,27 +992,27 @@ run_conversation():
 ### Testing
 
 ```bash
-python -m pytest scripts/hermes-agent/tests/ -o 'addopts=' -q   # Full suite
-python -m pytest scripts/hermes-agent/tests/tools/ -q            # Specific area
+python -m pytest <hermes-repo>/tests/ -o 'addopts=' -q   # Full suite
+python -m pytest <hermes-repo>/tests/tools/ -q            # Specific area
 ```
 
 - Tests auto-redirect `HERMES_HOME` to temp dirs — never touch real `~/.hermes/`
 - Run full suite before pushing any change
 - Use `-o 'addopts='` to clear any baked-in pytest flags
 
-**Windows contributors:** `scripts/hermes-agent/run_tests.sh` currently looks for POSIX venvs (`.venv/bin/activate` / `venv/bin/activate`) and will error out on Windows where the layout is `venv/Scripts/activate` + `python.exe`. The Hermes-installed venv at `venv/Scripts/` also has no `pip` or `pytest` — it's stripped for end-user install size. Workaround: install pytest + pytest-xdist + pyyaml into a system Python 3.11 user site (`/c/Program Files/Python311/python -m pip install --user pytest pytest-xdist pyyaml`), then run tests directly:
+**Windows contributors:** `<hermes-repo>/scripts/run_tests.sh` currently looks for POSIX venvs (`.venv/bin/activate` / `venv/bin/activate`) and will error out on Windows where the layout is `venv/Scripts/activate` + `python.exe`. The Hermes-installed venv at `venv/Scripts/` also has no `pip` or `pytest` — it's stripped for end-user install size. Workaround: install pytest + pytest-xdist + pyyaml into a system Python 3.11 user site (`/c/Program Files/Python311/python -m pip install --user pytest pytest-xdist pyyaml`), then run tests directly:
 
 ```bash
 export PYTHONPATH="$(pwd)"
-"/c/Program Files/Python311/python" -m pytest scripts/hermes-agent/tests/tools/test_foo.py -v --tb=short -n 0
+"/c/Program Files/Python311/python" -m pytest <hermes-repo>/tests/tools/test_foo.py -v --tb=short -n 0
 ```
 
 Use `-n 0` (not `-n 4`) because `pyproject.toml`'s default `addopts` already includes `-n`, and the wrapper's CI-parity story doesn't apply off-POSIX.
 
 **Cross-platform test guards:** tests that use POSIX-only syscalls need a skip marker. Common ones already in the codebase:
-- Symlink creation → `@pytest.mark.skipif(sys.platform == "win32", reason="Symlinks require elevated privileges on Windows")` (see `scripts/hermes-agent/tests/cron/test_cron_script.py`)
-- POSIX file modes (0o600, etc.) → `@pytest.mark.skipif(sys.platform.startswith("win"), reason="POSIX mode bits not enforced on Windows")` (see `scripts/hermes-agent/tests/hermes_cli/test_auth_toctou_file_modes.py`)
-- `signal.SIGALRM` → Unix-only (see `scripts/hermes-agent/tests/conftest.py::_enforce_test_timeout`)
+- Symlink creation → `@pytest.mark.skipif(sys.platform == "win32", reason="Symlinks require elevated privileges on Windows")` (see `<hermes-repo>/tests/cron/test_cron_script.py`)
+- POSIX file modes (0o600, etc.) → `@pytest.mark.skipif(sys.platform.startswith("win"), reason="POSIX mode bits not enforced on Windows")` (see `<hermes-repo>/tests/hermes_cli/test_auth_toctou_file_modes.py`)
+- `signal.SIGALRM` → Unix-only (see `<hermes-repo>/tests/conftest.py::_enforce_test_timeout`)
 - Live Winsock / Windows-specific regression tests → `@pytest.mark.skipif(sys.platform != "win32", reason="Windows-specific regression")`
 
 **Monkeypatching `sys.platform` is not enough** when the code under test also calls `platform.system()` / `platform.release()` / `platform.mac_ver()`. Those functions re-read the real OS independently, so a test that sets `sys.platform = "linux"` on a Windows runner will still see `platform.system() == "Windows"` and route through the Windows branch. Patch all three together:
@@ -1024,7 +1023,7 @@ monkeypatch.setattr(platform, "system", lambda: "Linux")
 monkeypatch.setattr(platform, "release", lambda: "6.8.0-generic")
 ```
 
-See `scripts/hermes-agent/tests/agent/test_prompt_builder.py::TestEnvironmentHints` for a worked example.
+See `<hermes-repo>/tests/agent/test_prompt_builder.py::TestEnvironmentHints` for a worked example.
 
 ### Extending the system prompt's execution-environment block
 
@@ -1034,10 +1033,9 @@ Factual guidance about the host OS, user home, cwd, terminal backend, and shell 
 - **Remote terminal backend** (anything in `_REMOTE_TERMINAL_BACKENDS`: `docker, singularity, modal, daytona, ssh, managed_modal`) → **suppress** host info entirely and describe only the backend. A live `uname`/`whoami`/`pwd` probe runs inside the backend via `tools.environments.get_environment(...).execute(...)`, cached per process in `_BACKEND_PROBE_CACHE`, with a static fallback if the probe times out.
 - **Key fact for prompt authoring:** when `TERMINAL_ENV != "local"`, *every* file tool (`read_file`, `write_file`, `patch`, `search_files`) runs inside the backend container, not on the host. The system prompt must never describe the host in that case — the agent can't touch it.
 
-Full design notes, the exact emitted strings, and testing pitfalls:
-`references/hermes-agent/prompt-builder-environment-hints.md`.
+Use this section with the current `agent/prompt_builder.py` source and its tests; the formerly named supplemental reference was not present in the source package.
 
-**Refactor-safety pattern (POSIX-equivalence guard):** when you extract inline logic into a helper that adds Windows/platform-specific behavior, keep a `_legacy_<name>` oracle function in the test file that's a verbatim copy of the old code, then parametrize-diff against it. Example: `scripts/hermes-agent/tests/tools/test_code_execution_windows_env.py::TestPosixEquivalence`. This locks in the invariant that POSIX behavior is bit-for-bit identical and makes any future drift fail loudly with a clear diff.
+**Refactor-safety pattern (POSIX-equivalence guard):** when you extract inline logic into a helper that adds Windows/platform-specific behavior, keep a `_legacy_<name>` oracle function in the test file that's a verbatim copy of the old code, then parametrize-diff against it. Example: `<hermes-repo>/tests/tools/test_code_execution_windows_env.py::TestPosixEquivalence`. This locks in the invariant that POSIX behavior is bit-for-bit identical and makes any future drift fail loudly with a clear diff.
 
 ### Commit Conventions
 
