@@ -1,8 +1,8 @@
 {
-  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260814-203755",
+  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260821-205335",
   "last_run_at": "2026-08-21T20:53:35.931250+00:00",
-  "last_run_duration_seconds": 434.054981,
-  "last_run_summary": "auto: no changes",
+  "last_run_duration_seconds": 116.999125,
+  "last_run_summary": "auto: no changes; llm: Processed the full candidate set: **1 skill**.\n\n- **Archived:** `segment-anything-model`\n- **Reason:** It is a legacy, model-specific SAM 1 guide rather than a durable class-level computer-vision skill. The skill itself identifies SAM 2 as …",
   "last_run_summary_shown_at": null,
   "paused": false,
   "run_count": 11
