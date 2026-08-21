@@ -72,44 +72,6 @@
       }
     },
     {
-      "id": "06c652689cdb",
-      "name": "GBrain local sync and embed",
-      "prompt": "Run a local GBrain maintenance pass for Kevin's Hermes brain.\n\nSelf-contained context:\n- GBrain repo: /Users/kevin/.hermes/brain\n- GBrain home: /Users/kevin/.hermes\n- GBrain CLI: /Users/kevin/.bun/bin/gbrain\n- Use PATH=\"$HOME/.bun/bin:$PATH\" and GBRAIN_HOME=/Users/kevin/.hermes.\n- Do not schedule any cron jobs from this cron-run session.\n- Delivery is local-only; final response should be short.\n\nRequired workflow:\n1. Load/use the gbrain-memory skill if available.\n2. Run:\n   export PATH=\"$HOME/.bun/bin:$PATH\"\n   export GBRAIN_HOME=/Users/kevin/.hermes\n   cd /Users/kevin/.hermes/brain\n   gbrain sync --repo /Users/kevin/.hermes/brain --no-embed\n   gbrain embed --stale\n3. If sync fails because the CLI cannot open PGLite, use MCP fallback when available:\n   mcp_gbrain_sync_brain(repo=\"/Users/kevin/.hermes/brain\", no_embed=true)\n4. If embed fails because OPENAI_API_KEY or another embedding provider credential is missing, report it as a warning, not fatal. Keyword search still works; vector/hybrid embeddings remain degraded.\n5. Do not submit an MCP background embed job unless a GBrain worker is already active. If you submit a diagnostic job and it remains waiting, cancel it.\n6. Verify with stats/health via CLI or MCP.\n7. Final local-only status must include: sync status, embedding status/coverage, and any required action. Keep it concise.",
-      "skills": [],
-      "skill": null,
-      "model": null,
-      "provider": null,
-      "base_url": null,
-      "script": null,
-      "schedule": {
-        "kind": "interval",
-        "minutes": 60,
-        "display": "every 60m"
-      },
-      "schedule_display": "every 60m",
-      "repeat": {
-        "times": null,
-        "completed": 1370
-      },
-      "enabled": true,
-      "state": "scheduled",
-      "paused_at": null,
-      "paused_reason": null,
-      "created_at": "2026-05-06T23:01:02.593006-05:00",
-      "next_run_at": "2026-07-17T12:10:18.582217-07:00",
-      "last_run_at": "2026-07-17T11:10:18.582217-07:00",
-      "last_status": "error",
-      "last_error": "RuntimeError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified workspace API usage limits. You will regain access on 2026-08-01 at 00:00 UTC.'}, 'request_id': 'req_011Cd85YoxJNsT5SJccprdh3'}",
-      "last_delivery_error": null,
-      "deliver": "local",
-      "origin": {
-        "platform": "discord",
-        "chat_id": "1499242568440090634",
-        "chat_name": "KevinACQ x Hermes Agent / #acq-agent-home",
-        "thread_id": null
-      }
-    },
-    {
       "id": "cb516db31d25",
       "name": "GBrain weekly doctor",
       "prompt": "Run weekly health checks for Kevin's Hermes GBrain integration. Use commands equivalent to: export PATH=\"$HOME/.bun/bin:$PATH\"; export GBRAIN_HOME=/Users/kevin/.hermes; cd /Users/kevin/.hermes/brain; gbrain doctor --json && gbrain stats. Concisely report health score, warnings, and any action needed. Do not schedule additional cron jobs.",
@@ -127,17 +89,17 @@
       "schedule_display": "0 9 * * 1",
       "repeat": {
         "times": null,
-        "completed": 11
+        "completed": 16
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-05-06T23:01:08.086717-05:00",
-      "next_run_at": "2026-07-20T09:00:00-07:00",
-      "last_run_at": "2026-07-13T09:00:48.710154-07:00",
-      "last_status": "error",
-      "last_error": "RuntimeError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified workspace API usage limits. You will regain access on 2026-08-01 at 00:00 UTC.'}, 'request_id': 'req_011CczLSQ98SX7LHT1hUszJK'}",
+      "next_run_at": "2026-08-24T09:00:00-07:00",
+      "last_run_at": "2026-08-17T09:01:00.052270-07:00",
+      "last_status": "ok",
+      "last_error": null,
       "last_delivery_error": null,
       "deliver": "local",
       "origin": {
@@ -165,17 +127,17 @@
       "schedule_display": "0 10 * * *",
       "repeat": {
         "times": null,
-        "completed": 73
+        "completed": 108
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-05-06T23:01:12.944813-05:00",
-      "next_run_at": "2026-07-18T10:00:00-07:00",
-      "last_run_at": "2026-07-17T10:00:13.006422-07:00",
-      "last_status": "error",
-      "last_error": "RuntimeError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'You have reached your specified workspace API usage limits. You will regain access on 2026-08-01 at 00:00 UTC.'}, 'request_id': 'req_011Cd7zCoAHBsD6ksgLu4VK9'}",
+      "next_run_at": "2026-08-22T10:00:00-07:00",
+      "last_run_at": "2026-08-21T10:00:26.015906-07:00",
+      "last_status": "ok",
+      "last_error": null,
       "last_delivery_error": null,
       "deliver": "local",
       "origin": {
@@ -186,5 +148,5 @@
       }
     }
   ],
-  "updated_at": "2026-07-17T11:10:18.582423-07:00"
+  "updated_at": "2026-08-21T10:00:26.016607-07:00"
 }

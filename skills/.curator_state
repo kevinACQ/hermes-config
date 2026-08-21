@@ -1,9 +1,9 @@
 {
   "last_report_path": "/Users/kevin/.hermes/logs/curator/20260814-203755",
-  "last_run_at": "2026-08-14T20:37:55.202971+00:00",
+  "last_run_at": "2026-08-21T20:53:35.931250+00:00",
   "last_run_duration_seconds": 434.054981,
-  "last_run_summary": "auto: no changes; llm: Created the class-level umbrella **`specialized-platform-operations`** and consolidated 10 active skills into it.\n\n### Work completed\n\n- Added a routing-focused `SKILL.md` covering:\n  - Hermes Agent\n  - ComfyUI\n  - TouchDesigner\n  - Jupyter…\narchived 10 skill(s):\n  • comfyui — pruned (stale)\n  • godmode — pruned (stale)\n  • hermes-agent — pruned (stale)\n  • jupyter-live-kernel — pruned (stale)\n  • obsidian — pruned (stale)\n  • openhue — pruned (stale)\n  • touchdesigner-mcp — pruned (stale)\n  • voice-calling-operations — pruned (stale)\n  • xurl — pruned (stale)\n  • yuanbao — pruned (stale)\nfull report: hermes curator status",
+  "last_run_summary": "auto: no changes",
   "last_run_summary_shown_at": null,
   "paused": false,
-  "run_count": 10
+  "run_count": 11
 }
