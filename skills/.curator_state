@@ -1,9 +1,9 @@
 {
-  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260828-212300",
-  "last_run_at": "2026-08-28T21:23:00.267875+00:00",
-  "last_run_duration_seconds": 0.763704,
+  "last_report_path": "/Users/kevin/.hermes/logs/curator/20260904-221107",
+  "last_run_at": "2026-09-04T22:11:07.990557+00:00",
+  "last_run_duration_seconds": 0.486461,
   "last_run_summary": "auto: no changes; llm: skipped (no candidates)",
   "last_run_summary_shown_at": null,
   "paused": false,
-  "run_count": 12
+  "run_count": 13
 }
