@@ -89,17 +89,17 @@
       "schedule_display": "0 9 * * 1",
       "repeat": {
         "times": null,
-        "completed": 16
+        "completed": 21
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-05-06T23:01:08.086717-05:00",
-      "next_run_at": "2026-08-24T09:00:00-07:00",
-      "last_run_at": "2026-08-17T09:01:00.052270-07:00",
-      "last_status": "ok",
-      "last_error": null,
+      "next_run_at": "2026-09-28T09:00:00-07:00",
+      "last_run_at": "2026-09-21T09:00:06.708014-07:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Error code: 402 - {'error': {'message': 'Payment Required', 'type': None, 'code': 'deactivated_workspace', 'param': None}, 'status': 402}",
       "last_delivery_error": null,
       "deliver": "local",
       "origin": {
@@ -127,17 +127,17 @@
       "schedule_display": "0 10 * * *",
       "repeat": {
         "times": null,
-        "completed": 108
+        "completed": 142
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-05-06T23:01:12.944813-05:00",
-      "next_run_at": "2026-08-22T10:00:00-07:00",
-      "last_run_at": "2026-08-21T10:00:26.015906-07:00",
-      "last_status": "ok",
-      "last_error": null,
+      "next_run_at": "2026-09-26T10:00:00-07:00",
+      "last_run_at": "2026-09-25T10:00:05.565676-07:00",
+      "last_status": "error",
+      "last_error": "RuntimeError: Error code: 402 - {'error': {'message': 'Payment Required', 'type': None, 'code': 'deactivated_workspace', 'param': None}, 'status': 402}",
       "last_delivery_error": null,
       "deliver": "local",
       "origin": {
@@ -148,5 +148,5 @@
       }
     }
   ],
-  "updated_at": "2026-08-21T10:00:26.016607-07:00"
+  "updated_at": "2026-09-25T10:00:05.566122-07:00"
 }
